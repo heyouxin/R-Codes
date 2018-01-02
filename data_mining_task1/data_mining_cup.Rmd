@@ -1,0 +1,79 @@
+---
+title: 'Data_mining_Cup 2017 '
+output:
+  pdf_document:
+    includes:
+      in_header: header.tex
+    keep_tex: yes
+  html_document: default
+  word_document: default
+---
+# 经济学院经济系 何友鑫 15320161152320
+## 经分析该问题比较适合用支持向量机进行分类,用R语言作为实验软件，用到的包有 "e1071" "xlsx"
+```{r setup, include=FALSE}
+library(e1071)
+library(xlsx)
+```
+## 读文件，确定自变量和因变量
+```{r}
+dataTrain <- read.table("./竞赛实验数据2017/kddtrain2017.txt")
+x <- dataTrain[,-101]
+y <- dataTrain[,101]
+```
+## 计算SVM在2种分类机，4种核函数下模型的错误次数
+```{r}
+type=c("C-classification","nu-classification")
+kernel=c("linear","polynomial","radial","sigmoid")
+accuracy=matrix(0,2,4)
+for (i in 1:2)
+{
+  for ( j in 1:4) 
+  {
+    model <- svm(x,y,type=type[i],kernel = kernel[j])
+    pred_temp=predict(model,x)
+    accuracy[i,j]=sum(pred_temp!=y)
+  }
+}
+dimnames(accuracy)=list(type,kernel)
+accuracy
+```
+```{r}
+print(paste0("所有模型中最高的正确率为",(6270-16)/6270))
+```
+
+## 由以上结果可知，使用SVM进行实验，type="C-classification",kernel = "polynomial"的模型最优。
+## 实验1用训练数据的前5770条作为训练集，后500条作为测试集，看看预测结果
+```{r}
+model1 <- svm(x[1:5770,],y[1:5770],type="C-classification",kernel = "polynomial")
+pred1 <- predict(model1,x[5771:6270,])
+```
+```{r}
+table(pred1,y[5771:6270])
+```
+## 实验2用训练数据的前6000条作为训练集，后270条作为测试集，看看预测结果
+```{r}
+model2 <- svm(x[1:6000,],y[1:6000],type="C-classification",kernel = "polynomial")
+pred2 <- predict(model2,x[6001:6270,])
+```
+```{r}
+table(pred2,y[6001:6270])
+```
+## 实验3使用全部训练样本展示预测结果，并与真实情况的比较。
+```{r}
+model_fitted <- svm(x,y,type="C-classification",kernel = "polynomial")
+summary(model_fitted)
+pred <- predict(model_fitted,x)
+```
+```{r}
+table(pred,y)
+```
+
+## 由实验的的结果来看，模型是可信的。
+## 由于自变量有100个，所以不好进行权重优化，99.74%的准确率是可以接受的范围，故即用原始模型作为最终模型
+## 读测试数据，并用模型进行预测，将结果写入excel文件中
+```{r}
+dataTest <- read.table("./竞赛实验数据2017/kddtest2017.txt")
+pred_test=predict(model_fitted,dataTest)
+write.xlsx(pred_test,"predict_result.xlsx",col.names = F,row.names = F)
+```
+

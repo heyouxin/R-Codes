@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(foreign)\nmydataframe<-read.dta(\"attend.dta\")\nfit<-lm(attend~termGPA+priGPA,data=mydataframe)\nsummary(fit)\nplot(mydataframe$attend,mydataframe$termGPA)\n\nlibrary(foreign)\nmydataframe<-read.dta(\"attend.dta\")\nfit<-lm(attend~termGPA,data=mydataframe)\nsummary(fit)\nplot(mydataframe$attend,mydataframe$termGPA)\nabline(fit)\n\n\n\nabline(mydataframe$attend,mydataframe$termGPA)\n#plot(mydataframe$attend,)\n#plot(mydataframe$attend,fit$)\n#abline(fit)\n#view(fit)\niris\nlm(Sepal.Length~Sepal.Width+Petal.Width,data=iris)\n\n#Data Analysis Using R: Exercise3  缺失数据用NA\nStudent<-c(\"John Davis\",\"Angela Williams\",\"Bullwinkle Moose\",\"David Jones\",\"Janice Markhammer\",\"cheryl Cushing\",\"Reuven Ytarhak\",\"Greg Knox\",\"Joel England\",\"Mary Rayburn\")\nMath<-c(502,600,412,358,495,512,410,625,573,522)\nScience<-c(95,99,80,82,75,85,80,95,89,86)\nEnglish<-c(25,22,18,15,20,28,15,30,27,18)\ndataframe1<-data.frame(Student,Math,Science,English,stringsAsFactors = FALSE)\nView(dataframe1)\noptions(digits = 3)\nz <- scale(dataframe1[,2:4])\n#View(z)\ntotal_score <- apply(z,1,mean)\n#多加一个变量，同加一列\n#dataframe1$total_score <- total_score\n#cbind 多加一列 bind dataframe1+total_score rbind 多加一行\ndataframe1 <- cbind(dataframe1,total_score)\ny <- quantile(dataframe1$total_score,c(.8,.6,.4,.2))\ndataframe1$grade[total_score >=y[1]] <-\"A\"\ndataframe1$grade[total_score <y[1] & total_score>=y[2]] <-\"B\"\ndataframe1$grade[total_score <y[2] & total_score>=y[3]] <-\"C\"\ndataframe1$grade[total_score <y[3] & total_score>=y[4]] <-\"D\"\ndataframe1$grade[total_score <y[4]] <-\"E\"\nView(dataframe1)\n#拆分姓名\nname<-strsplit(dataframe1$Student,\" \")\nfirstname<-sapply(name, \"[\",1)\nlastname<-sapply(name, \"[\",2)\n#删除1，2，3列后拼接\ndataframe1<-cbind(firstname,lastname,dataframe1[,-c(1,2,3)])\ndataframe1<-dataframe1[order(lastname,firstname),]\n\n\n\n\n#dataframe2<-dataframe1[order(dataframe1$Student),]\n#View(dataframe2)\n#随机抽样\nmysample<-dataframe2[sample(1:nrow(dataframe2),3,replace=FALSE),]\nView(mysample)\n#输出EXCEL row.names=T  the left order row      \n#write.csv(dataframe1,\"sample2.csv\", row.names=F)\n\n#import EXCEL\nlibrary(gdata)\nmydataframe2<-read.xls(\"test1.xls\",sheet=1)\nView(mydataframe2)\n\n\n\nlibrary(RODBC)\nchannel<-odbcConnectExcel2007(\"test1.xlsx\")\ndataframe2<-sqlFetch(channel,\"sample\")\nodbcClose(channel)\nView(dataframe2)\n\nlibrary(xlsx)\nworkbook<-\"test1.xlsx\"\nmydataframe2<-read.xlsx(workbook,1)\n\npdf(\"3.pdf\")\nattach(mtcars)\nplot(wt,mpg)\nabline(lm(mpg~wt))\ntitle(main = \"main title\")\ndetach(mtcars)\ndev.off()\n\n\n\npdf(\"4.pdf\")\nattach(mtcars)\n#plot(wt,mpg)\nfit<-lm(mpg~wt)\nsummary(fit)\n#title(main = \"main title\")\ndetach(mtcars)\ndev.off()\n\n\nattach(mtcars)\nplot(wt,mpg)\nabline(lm(mpg~wt))\ntitle(main = \"main title\")\ndetach(mtcars)\n\nattach(mtcars)\nmtcars\napply(mtcars, 1, mean)\n\nmydata <- matrix(rnorm(12),nrow=3)\nView(mydata)\n\nplot(x^2,1,2)\n \n#math function graph\nfunc<-function(x) -exp(x)+exp(-x)\nplot(func,0,10)\n\n\n",
+    "created" : 1475586763325.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1823738400",
+    "id" : "AF904B77",
+    "lastKnownWriteTime" : 1475510841,
+    "last_content_update" : 1475510841,
+    "path" : "~/DAY 1/read_dta_OLS.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,9 @@
+{
+    "path" : "~/R codes/myQuant",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

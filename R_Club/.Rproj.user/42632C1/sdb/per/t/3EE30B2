@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "str(iris)\nset.seed(1234)\nind <- sample(2,nrow(iris),replace = T,prob=c(0.7,0.3))\ntrainData <- iris[ind==1,]\ntestData <- iris[ind==2,]\nlibrary(party)\nmyFormula <- Species~Sepal.Length+Sepal.Width+Petal.Length+Petal.Width\niris_ctree <- ctree(myFormula,data=trainData)\ntable(predict(iris_ctree),trainData$Species)\nplot(iris_ctree)\n",
+    "created" : 1492915359806.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1297763540",
+    "id" : "3EE30B2",
+    "lastKnownWriteTime" : 1495014146,
+    "last_content_update" : 1495014146848,
+    "path" : "~/R codes/R_Club/5_17 machine_Learning.R",
+    "project_path" : "5_17 machine_Learning.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

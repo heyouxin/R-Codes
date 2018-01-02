@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "###rm(list=ls())\nlibrary(httr)\nlibrary(rvest)\nlibrary(RSelenium)\n remDr <- remoteDriver(remoteServerAddr = \"localhost\" \n                      , port = 4444\n                       , browserName = \"chrome\"\n )\n\nremDr$open()\nremDr$navigate(\"http://datacenter.mep.gov.cn:8099/ths-report/report!list.action?xmlname=1463473852790\")\ndata_all<-data.frame()\nlibrary(splitstackshape)\n\n\nfor (i in 1:5)\n{\n  webElem_data <- remDr$findElements(using = 'css selector', \"#tablehtml\")\n  data_get <- unlist(lapply(webElem_data, function(x){x$getElementText()}))\n  data_get2<-strsplit(data_get,\"\\n\")\n  data_get3<-as.data.frame(data_get2)\n  col_name<-names(data_get3)\n  data_get3<-cSplit(data_get3,col_name,\" \")\n  data_get3<-data_get3[-1,]\n  names(data_get3)<-c(\"城市\",\"日期\",\"污染指数\",\"首要污染物\",\"空气质量级别\",\"空气状况\")\n  data_all<-rbind(data_all,data_get3)\n  webElem <- remDr$findElement(using = 'css selector', \"a:nth-child(13)\")  \n  webElem$clickElement()\n\n}\n\n\nfor (j in 6:12697)\n{\n  webElem_data <- remDr$findElements(using = 'css selector', \"#tablehtml\")\n  data_get <- unlist(lapply(webElem_data, function(x){x$getElementText()}))\n  data_get2<-strsplit(data_get,\"\\n\")\n  data_get3<-as.data.frame(data_get2)\n  col_name<-names(data_get3)\n  data_get3<-cSplit(data_get3,col_name,\" \")\n  data_get3<-data_get3[-1,]\n  names(data_get3)<-c(\"城市\",\"日期\",\"污染指数\",\"首要污染物\",\"空气质量级别\",\"空气状况\")\n  data_all<-rbind(data_all,data_get3)\n  webElem <- remDr$findElement(using = 'css selector', \"a:nth-child(14)\")  \n  webElem$clickElement()\n  \n}\n\nwrite.csv(data_all,\"air_API.csv\")\n\n\n\n\n\n\n",
+    "created" : 1487427841987.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1150651431",
+    "id" : "545B5AF5",
+    "lastKnownWriteTime" : 1487507060,
+    "last_content_update" : 1487507060238,
+    "path" : "~/R codes/getData_air_API/Main.R",
+    "project_path" : "Main.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

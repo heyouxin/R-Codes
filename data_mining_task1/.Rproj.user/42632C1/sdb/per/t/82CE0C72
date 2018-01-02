@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Data_mining_Cup 2017 \"\noutput: \n  pdf_document: \n    keep_tex: yes\n    latex_engine: xelatex\n    includes:\n        in_header: header.tex\n---\n\n## 中文\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\n```\n\n",
+    "created" : 1511057668464.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2816503167",
+    "id" : "82CE0C72",
+    "lastKnownWriteTime" : 1511059922,
+    "last_content_update" : 1511059922047,
+    "path" : "~/R codes/data_mining_task1/rmd_test.Rmd",
+    "project_path" : "rmd_test.Rmd",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

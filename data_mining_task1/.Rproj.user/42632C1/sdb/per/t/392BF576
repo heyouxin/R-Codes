@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: 'Data_mining_Cup 2017 '\noutput:\n  pdf_document:\n    includes:\n      in_header: header.tex\n    keep_tex: yes\n  html_document: default\n  word_document: default\n---\n# 经济学院经济系 何友鑫 15320161152320\n## 经分析该问题比较适合用支持向量机进行分类,用R语言作为实验软件，用到的包有 \"e1071\" \"xlsx\"\n```{r setup, include=FALSE}\nlibrary(e1071)\nlibrary(xlsx)\n```\n## 读文件，确定自变量和因变量\n```{r}\ndataTrain <- read.table(\"./竞赛实验数据2017/kddtrain2017.txt\")\nx <- dataTrain[,-101]\ny <- dataTrain[,101]\n```\n## 计算SVM在2种分类机，4种核函数下模型的错误次数\n```{r}\ntype=c(\"C-classification\",\"nu-classification\")\nkernel=c(\"linear\",\"polynomial\",\"radial\",\"sigmoid\")\naccuracy=matrix(0,2,4)\nfor (i in 1:2)\n{\n  for ( j in 1:4) \n  {\n    model <- svm(x,y,type=type[i],kernel = kernel[j])\n    pred_temp=predict(model,x)\n    accuracy[i,j]=sum(pred_temp!=y)\n  }\n}\ndimnames(accuracy)=list(type,kernel)\naccuracy\n```\n```{r}\nprint(paste0(\"所有模型中最高的正确率为\",(6270-16)/6270))\n```\n\n## 由以上结果可知，使用SVM进行实验，type=\"C-classification\",kernel = \"polynomial\"的模型最优。\n## 实验1用训练数据的前5770条作为训练集，后500条作为测试集，看看预测结果\n```{r}\nmodel1 <- svm(x[1:5770,],y[1:5770],type=\"C-classification\",kernel = \"polynomial\")\npred1 <- predict(model1,x[5771:6270,])\n```\n```{r}\ntable(pred1,y[5771:6270])\n```\n## 实验2用训练数据的前6000条作为训练集，后270条作为测试集，看看预测结果\n```{r}\nmodel2 <- svm(x[1:6000,],y[1:6000],type=\"C-classification\",kernel = \"polynomial\")\npred2 <- predict(model2,x[6001:6270,])\n```\n```{r}\ntable(pred2,y[6001:6270])\n```\n## 实验3使用全部训练样本展示预测结果，并与真实情况的比较。\n```{r}\nmodel_fitted <- svm(x,y,type=\"C-classification\",kernel = \"polynomial\")\nsummary(model_fitted)\npred <- predict(model_fitted,x)\n```\n```{r}\ntable(pred,y)\n```\n\n## 由实验的的结果来看，模型是可信的。\n## 由于自变量有100个，所以不好进行权重优化，99.74%的准确率是可以接受的范围，故即用原始模型作为最终模型\n## 读测试数据，并用模型进行预测，将结果写入excel文件中\n```{r}\ndataTest <- read.table(\"./竞赛实验数据2017/kddtest2017.txt\")\npred_test=predict(model_fitted,dataTest)\nwrite.xlsx(pred_test,\"predict_result.xlsx\",col.names = F,row.names = F)\n```\n\n",
+    "created" : 1510468543639.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2613933198",
+    "id" : "392BF576",
+    "lastKnownWriteTime" : 1511067842,
+    "last_content_update" : 1511067842557,
+    "path" : "~/R codes/data_mining_task1/data_mining_cup.Rmd",
+    "project_path" : "data_mining_cup.Rmd",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

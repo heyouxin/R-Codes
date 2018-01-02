@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#### version 2.0 2017.12 hyx    FLZT\n\n####1.逐行读取判断，读到<rec>写入一条记录，往下循环，判断是哪个字段，\n####2.读到“摘要”字段，即往下判断是否为“<”,进行拼接\n####3.有无可能连接数据库，每条记录直接写入数据库中。\n\n####4.用sampe  test_flzt.txt进行测试。按行读取。\n\n\n####   完全不行  用while 太慢了！！！   只能把数据先读入内存\n# \n# #View(excel_data)\n# library(data.table)\n# record_t <- data.table()    \nrecord_t<-list()\n#con <- file(\"data_zl.txt\", \"r\")\ncon <- file(file.choose(),r)\n\nline<-readLines(con,n=1)\nwhile( length(line) != 0 )\n{\n  record_1<-c()\n  if(grepl(\"<rec>=.*\",line))\n  {\n    line<-readLines(con,n=1)\n    while(!grepl(\"<rec>=.*\",line))\n    {\n      append(record_1,line)\n      line<-readLines(con,n=1)\n    }\n    append(record_t,record_1)\n  }\n}\nhead(record_t)\n \n# # GKH2",
+    "created" : 1484191118191.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1137007883",
+    "id" : "8329E624",
+    "lastKnownWriteTime" : 1484622483,
+    "last_content_update" : 1484622483110,
+    "path" : "~/R codes/txt_To_excel/sample_test.R",
+    "project_path" : "sample_test.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

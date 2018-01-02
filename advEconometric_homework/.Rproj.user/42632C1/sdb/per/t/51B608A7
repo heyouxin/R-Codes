@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#library(openxlsx)\nlibrary(sqldf)\nlibrary(xlsx)\nfilename<-\"2月片区客户销售明细表.xlsx\"\nXSZB<-read.xlsx(filename,sheetName = 1,encoding = \"UTF-8\")\n\n\n\nhead(XSZB)\nattach(XSZB)\nsql1<-sqldf(\"select 单位全名,商品全名,规格,销售单价,产地,基本单位,sum(销售数量) from XSZB group by 单位全名,商品全名,规格,销售单价,产地,基本单位\")\nView(sql1)\n\n#write.csv(sql1,\"销售总表-12月_2.csv\",row.names = F)\nnames(sql1)<-c(\"单位全名\",\"商品全名\",\"规格\",\"销售单价\",\"产地\",\"基本单位\",\"销售总量\")\nwrite.xlsx(sql1,filename,row.names = F)\n\n",
+    "created" : 1489761971014.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "124766820",
+    "id" : "51B608A7",
+    "lastKnownWriteTime" : 1488721593,
+    "last_content_update" : 1488721593,
+    "path" : "~/R codes/EXCEL_OPERATION/excel_operate.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

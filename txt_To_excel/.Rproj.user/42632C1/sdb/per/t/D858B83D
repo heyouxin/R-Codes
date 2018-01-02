@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#rm(data_ch)\nlibrary(data.table)\ncon <- file(\"SQ2011-2016_1.txt\", \"r\")\ndata_ch <- readLines(con,n=-1,encoding = \"UTF-8\")\nclose(con)\nhead(data_ch)\n\n\n\n####查找满足条件的行\ndata_get<-grep(\"<公开（公告）号>=.*\",data_ch)\nGKH <- data_ch[data_get]\n\n####删除<  >=之间的所有字符\nGKH2 <- gsub(\"<.*?>=\",\"\",GKH)\n\n\n\n\n\ndata_get<-grep(\"<公开（公告）日>=.*\",data_ch)\nGKR <- data_ch[data_get]\nGKR2 <- gsub(\"<.*?>=\",\"\",GKR)\n\ndata_get<-grep(\"<申请号>=.*\",data_ch)\nSQH <- data_ch[data_get]\nSQH2 <- gsub(\"<.*?>=\",\"\",SQH)\n\ndata_get<-grep(\"<申请日>=.*\",data_ch)\nSQR <- data_ch[data_get]\nSQR2 <- gsub(\"<.*?>=\",\"\",SQR)\n\n\ndata_get<-grep(\"<专利号>=.*\",data_ch)\nZLH <- data_ch[data_get]\nZLH2 <- gsub(\"<.*?>=\",\"\",ZLH)\n\n\n\n#####-------\ndata_get<-grep(\"<名称>=.*\",data_ch)\nMC <- data_ch[data_get]\nMC2 <- gsub(\"<.*?>=\",\"\",MC)\n\n\ndata_get<-grep(\"<主分类号>=.*\",data_ch)\nZFLH <- data_ch[data_get]\nZFLH2 <- gsub(\"<.*?>=\",\"\",ZFLH)\n\n\ndata_get<-grep(\"<分类号>=.*\",data_ch)\nFLH <- data_ch[data_get]\nFLH2 <- gsub(\"<.*?>=\",\"\",FLH)\n\n\ndata_get<-grep(\"<申请（专利权）人>=.*\",data_ch)\nSQZLR <- data_ch[data_get]\nSQZLR2 <- gsub(\"<.*?>=\",\"\",SQZLR)\n\n\ndata_get<-grep(\"<发明（设计）人>=.*\",data_ch)\nFMR <- data_ch[data_get]\nFMR2 <- gsub(\"<.*?>=\",\"\",FMR)\n\ndata_get<-grep(\"<摘要>=.*\",data_ch)\nZY <- data_ch[data_get]\nZY2 <- gsub(\"<.*?>=\",\"\",ZY)\n\ndata_get<-grep(\"<主权项>=.*\",data_ch)\nZQX <- data_ch[data_get]\nZQX2 <- gsub(\"<.*?>=\",\"\",ZQX)\n# \n# \ndata_get<-grep(\"<优先权>=.*\",data_ch)\nYXQ <- data_ch[data_get]\nYXQ2 <- gsub(\"<.*?>=\",\"\",YXQ)\n\ndata_get<-grep(\"<国省代码>=.*\",data_ch)\nGSDM <- data_ch[data_get]\nGSDM2 <- gsub(\"<.*?>=\",\"\",GSDM)\n# \n\ndata_get<-grep(\"<地址>=.*\",data_ch)\nDZ <- data_ch[data_get]\nDZ2 <- gsub(\"<.*?>=\",\"\",DZ)\n# \ndata_get<-grep(\"<专利代理机构>=.*\",data_ch)\nZLDLJG <- data_ch[data_get]\nZLDLJG2 <- gsub(\"<.*?>=\",\"\",ZLDLJG)\n# \ndata_get<-grep(\"<代理人>=.*\",data_ch)\nDLR <- data_ch[data_get]\nDLR2 <- gsub(\"<.*?>=\",\"\",DLR)\n# \ndata_get<-grep(\"<审查员>=.*\",data_ch)\nSCY <- data_ch[data_get]\nSCY2 <- gsub(\"<.*?>=\",\"\",SCY)\n\ndata_get<-grep(\"<发布路径>=.*\",data_ch)\nFBLJ <- data_ch[data_get]\nFBLJ2 <- gsub(\"<.*?>=\",\"\",FBLJ)\n# \ndata_get<-grep(\"<页数>=.*\",data_ch)\nYS <- data_ch[data_get]\nYS2 <- gsub(\"<.*?>=\",\"\",YS)\n# \ndata_get<-grep(\"<申请国代码>=.*\",data_ch)\nSQGDM <- data_ch[data_get]\nSQGDM2 <- gsub(\"<.*?>=\",\"\",SQGDM)\n# \ndata_get<-grep(\"<专利类型>=.*\",data_ch)\nZLLX <- data_ch[data_get]\nZLLX2 <- gsub(\"<.*?>=\",\"\",ZLLX)\n# \ndata_get<-grep(\"<申请来源>=.*\",data_ch)\nSQLY <- data_ch[data_get]\nSQLY2 <- gsub(\"<.*?>=\",\"\",SQLY)\n# \n\ndata_get<-grep(\"<参考文献>=.*\",data_ch)\nCKWX <- data_ch[data_get]\nCKWX2 <- gsub(\"<.*?>=\",\"\",CKWX)\n\n\n\n\n\nexcel_data <- data.table(\"公开号\"=GKH2,\"公开日\"=GKR2,\"申请号\"=SQH2,\"申请日\"=SQR2,\"专利号\"=ZLH2,\"名称\"=MC2,\"主分类号\"=ZFLH2,\"分类号\"=FLH2,\"申请(专利权)人\"=SQZLR2,\"发明(设计)人\"=FMR2,\"摘要\"=ZY2,\"主权项\"=ZQX2,\"优先权\"=YXQ2,\"国省代码\"=GSDM2,\"地址\"=DZ2,\"专利代理机构\"=ZLDLJG2,\"代理人\"=DLR2,\"审查员\"=SCY2,\"发布路径\"=FBLJ2,\"页数\"=YS2,\"申请国代码\"=SQGDM2,\"专利类型\"=ZLLX2,\"申请来源\"=SQLY2,\"参考文献\"=CKWX2)\n#View(excel_data)\nwrite.csv(excel_data,\"SQ2011-2016_1.csv\")",
+    "created" : 1482761608525.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2859958524",
+    "id" : "D858B83D",
+    "lastKnownWriteTime" : 1482762469,
+    "last_content_update" : 1482762469412,
+    "path" : "~/R codes/txt_To_excel/SQ.R",
+    "project_path" : "SQ.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

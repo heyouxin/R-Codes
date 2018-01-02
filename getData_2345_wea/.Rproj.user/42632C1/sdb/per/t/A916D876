@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "data111 <- data.frame()\nfor(i in 1:7)\n{\n  doc_name <- paste0(\"firms\",i,\".csv\")\n  df <- read.csv(doc_name,header = F)\n  data111 <- rbind(data111,df[-1,-1])\n\n}\nhead(data111)\n\n\nwrite.csv(data111,file = \"./files/firms_no_invalidData.csv\")\n\n####读取EXCEL\n# library(openxlsx)\n# library(ggplot2)\n# table_test <- read.xlsx(\"mydata2.xlsx\")\n# table_test$date <- convertToDate(table_test$date)\n# qplot(table_test$date,table_test$beijing,geom = \"path\")\n# \n# \n# \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nno <- c(1:7)\nno\ndoc_name <- paste0(\"firms\",no,\".csv\")\ndoc_name\ndf_name <- paste0(\"df\",no)\ndf_name <- read.csv(doc_name,header = F)\ndf_total <- rbind(df_name[-1,-1])\nhead(df_total)\ndf1 <- read.csv(\"firms1.csv\",header = F)\ndf1[-1,-1]\ndf1 <- read.csv(\"firms1.csv\",header = F)\ndf1[-1,-1]\ndf1 <- read.csv(\"firms1.csv\",header = F)\ndf1[-1,-1]\n\n\ndf1 <- read.csv(\"firms1.csv\",header = F)\ndf2 <- read.csv(\"firms2.csv\",header = F)\ndf3 <- read.csv(\"firms3.csv\",header = F)\ndf4 <- read.csv(\"firms4.csv\",header = F)\ndf5 <- read.csv(\"firms5.csv\",header = F)\ndf6 <- read.csv(\"firms6.csv\",header = F)\ndf7 <- read.csv(\"firms7.csv\",header = F)\ndf55 <- df5[!duplicated(df5),]\n\ndf <- rbind(df1[-1,-1],df2[-1,-1])\n\n\n\n\n\n\n",
+    "created" : 1487512128846.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1018532997",
+    "id" : "A916D876",
+    "lastKnownWriteTime" : 1481175002,
+    "last_content_update" : 1481175002,
+    "path" : "~/R codes/getData_BaiTen/merge_excel.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

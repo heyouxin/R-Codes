@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(RMySQL)\nconn <- dbConnect(MySQL(), dbname = \"world\", username=\"root\", password=\"123456\", host=\"127.0.0.1\", port=3306)\nres <- dbSendQuery(conn, \"SELECT * FROM country where Code='CHN';\")\ndata <- dbFetch(res)\ndata\ndbClearResult(res)\ndbDisconnect(conn)\nres2 <- dbSendQuery(conn, \"update country set Code2='CN' where Code='CHN';\")\n\n",
+    "created" : 1492590179819.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4195307542",
+    "id" : "4F0CE964",
+    "lastKnownWriteTime" : 1492592675,
+    "last_content_update" : 1492592675409,
+    "path" : "~/R codes/R_Club/R_sql.R",
+    "project_path" : "R_sql.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

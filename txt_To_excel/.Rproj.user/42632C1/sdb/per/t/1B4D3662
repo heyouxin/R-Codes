@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#rm(list = ls())\n#library(data.table)\n#con <- file(file.choose(),r)\ncon <- file(\"FLZT_2008-2016_3.txt\", \"r\")\ndata_ch <- readLines(con,n=-1,encoding = \"UTF-8\")\n#data_ch <- readLines(con,n=-1)\nclose(con)\nhead(data_ch)\nrec_pos<-grep(\"<REC>\",data_ch)\nlength(rec_pos)\nrecord_t<-data.frame(授权公告号=\"\",申请号=\"\",法律状态公告日=\"\",法律状态=\"\",法律状态信息=\"\")\nrecord_t<-record_t[-1,]\n\ni_rec_pos<-length(rec_pos)-1\ni_rec_pos\n\n#for (i in c(2:length(rec_pos)-1))\nfor (i in c(1:i_rec_pos))\n{\n  ####授权公告号 申请号  法律状态公告日  法律状态  法律状态信息  \n  SQGGH2<-NA\n  SQH2<-NA\n  FLZTGGR2<-NA\n  FLZT2<-NA\n  FLZTXX2<-NA\n  data_1<-data_ch[c(rec_pos[i]:rec_pos[i+1])]\n  pos_SQGGH<-grep(\"<授权公告号>=.*\",data_1)\n  if(length(pos_SQGGH)!=0)\n  {\n    SQGGH <- data_1[pos_SQGGH]\n    SQGGH2 <- gsub(\"<.*?>=\",\"\",SQGGH)\n    \n  }\n  pos_SQH<-grep(\"申请号>=.*\",data_1)\n  if(length(pos_SQH)!=0)\n  {\n    SQH <- data_1[pos_SQH]\n    SQH2 <- gsub(\"<.*?>=\",\"\",SQH)\n    \n  }\n  \n  pos_FLZTGGR<-grep(\"<法律状态公告日>=.*\",data_1)\n  if(length(pos_FLZTGGR)!=0)\n  {\n    FLZTGGR <- data_1[pos_FLZTGGR]\n    FLZTGGR2 <- gsub(\"<.*?>=\",\"\",FLZTGGR)\n    \n  }\n  pos_FLZT<-grep(\"<法律状态>=.*\",data_1)\n\n  if(length(pos_FLZT)!=0)\n  {\n    FLZT <- data_1[pos_FLZT]\n    FLZT2 <- gsub(\"<.*?>=\",\"\",FLZT)\n    \n  }\n  \n  pos_FLZTXX<-grep(\"<法律状态信息>=.*\",data_1)\n  if(length(pos_FLZTXX)!=0)\n  {\n    FLZTXX <- data_1[pos_FLZTXX]\n    FLZTXX2 <- gsub(\"<.*?>=\",\"\",FLZTXX)\n    \n  }\n  \n  \n\n  # \n  record_1<-data.frame(授权公告号=SQGGH2,申请号=SQH2,法律状态公告日=FLZTGGR2,法律状态=FLZT2,法律状态信息=FLZTXX2)\n  #record_1\n  record_t<-rbind(record_t,record_1)\n}\n####最后一条记录\nSQGGH2<-NA\nSQH2<-NA\nFLZTGGR2<-NA\nFLZT2<-NA\nFLZTXX2<-NA\n\ndata_1<-data_ch[c(rec_pos[length(rec_pos)]:length(data_ch))]\npos_SQGGH<-grep(\"<授权公告号>=.*\",data_1)\nif(length(pos_SQGGH)!=0)\n{\n  SQGGH <- data_1[pos_SQGGH]\n  SQGGH2 <- gsub(\"<.*?>=\",\"\",SQGGH)\n  \n}\npos_SQH<-grep(\"申请号>=.*\",data_1)\nif(length(pos_SQH)!=0)\n{\n  SQH <- data_1[pos_SQH]\n  SQH2 <- gsub(\"<.*?>=\",\"\",SQH)\n  \n}\n\npos_FLZTGGR<-grep(\"<法律状态公告日>=.*\",data_1)\nif(length(pos_FLZTGGR)!=0)\n{\n  FLZTGGR <- data_1[pos_FLZTGGR]\n  FLZTGGR2 <- gsub(\"<.*?>=\",\"\",FLZTGGR)\n  \n}\npos_FLZT<-grep(\"<法律状态>=.*\",data_1)\n\nif(length(pos_FLZT)!=0)\n{\n  FLZT <- data_1[pos_FLZT]\n  FLZT2 <- gsub(\"<.*?>=\",\"\",FLZT)\n  \n}\n\npos_FLZTXX<-grep(\"<法律状态信息>=.*\",data_1)\nif(length(pos_FLZTXX)!=0)\n{\n  FLZTXX <- data_1[pos_FLZTXX]\n  FLZTXX2 <- gsub(\"<.*?>=\",\"\",FLZTXX)\n  \n}\n\n\n\n# \n# \nrecord_1<-data.frame(授权公告号=SQGGH2,申请号=SQH2,法律状态公告日=FLZTGGR2,法律状态=FLZT2,法律状态信息=FLZTXX2)\n\nrecord_t<-rbind(record_t,record_1)\nhead(record_t)\nwrite.csv(record_t,\"FLZT_2008-2016_3.csv\")\n\n\n\n\n\n\n\n",
+    "created" : 1484288175795.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4229759217",
+    "id" : "1B4D3662",
+    "lastKnownWriteTime" : 1484622479,
+    "last_content_update" : 1484622479761,
+    "path" : "~/R codes/txt_To_excel/FLZT_2.R",
+    "project_path" : "FLZT_2.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 33,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

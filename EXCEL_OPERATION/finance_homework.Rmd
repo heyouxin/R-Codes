@@ -1,0 +1,127 @@
+---
+output: 
+  pdf_document: 
+    keep_tex: yes
+    latex_engine: xelatex
+    includes:
+        in_header: header.tex
+---
+
+## 经济系    何友鑫    15320161152320
+
+## R Code
+```{r include=FALSE}
+library(xlsx)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r warning=FALSE}
+filename <- dir("./Data/")
+#删除隐藏文件
+filename <- filename[-(1:6)]
+price_plot <- function(flag=0,i)
+{
+  filepath <- paste0("./Data/",filename[i])
+  if(flag==0)
+  {
+    #从第三部分开始读取文件，即28行开始
+    file <- read.xlsx(filepath,1,startRow = 28)
+  }
+  if(flag==1)
+  {
+    #问题3的第三部分数据是从33行开始
+    file <- read.xlsx(filepath,1,startRow = 33)
+  }
+  #tradeID=0,-1的行剔除 按tradeID升序排列
+  file <- filter(file,tradeID>0)
+  file <- file[order(file$tradeID),]
+  
+  group1 <- filter(file,Group==1)
+  #time_t <- c(1:nrow(group1))
+  title <- paste0(filename[i],"_group1 price")
+  plot1 <- ggplot(group1,aes(x=group1$tradeID,group1$price))+
+    geom_line(colour="green")+
+    ggtitle(title)
+  print(plot1)
+ 
+  group2 <- filter(file,Group==2)
+  #time_t <- c(1:nrow(group2))
+  title <- paste0(filename[i],"_group2 price")
+  plot2 <- ggplot(group2,aes(x=group2$tradeID,group2$price))+
+    geom_line(colour="red")+
+    ggtitle(title)
+  print(plot2)
+}
+```
+
+
+##Q1.第一场至第七场“可融资实验”第一轮
+
+```{r warning=FALSE,fig.width=3,fig.height=2}
+for (i in 1:7) 
+{
+  price_plot(0,i)
+}
+
+```
+
+\newpage
+
+##Q2.第一场至第七场“不可融资实验”第一轮
+
+```{r warning=FALSE,fig.width=3,fig.height=2}
+for (i in 27:33) 
+{
+  price_plot(0,i)
+}
+
+```
+
+\newpage
+
+##Q3.第一场至第七场“可融资实验”第四轮
+
+```{r warning=FALSE,fig.width=3,fig.height=2}
+for (i in 22:26) 
+{
+  price_plot(1,i)
+}
+
+```
+
+\newpage
+
+##Q4.
+
+###1.相对于可融资实验，不可融资实验中游戏资产交易价格的波动幅度更小。
+###2.从交易价格的极端值来看，可融资交易出现了一次200元，四次50元，而不可融资交易相对应的是一次150元，一次60元，一次50元。
+
+##Q5.  
+  
+###第四轮交易手数多，交易更为频繁，价格波动快。
+
+##Q6.  
+  
+###1.共谋的方式：资产高价成交，把资金转移到一个人手里。  
+###2.防止合谋的方法：1）将每个交易者隔绝，禁止私下接触；2）每一场比赛每一轮重新分配每一组的交易对手。确保每一场交易中交易者都面临不同的交易对手。3）设置涨跌停。  
+
+##Q7. 
+  
+###1.参与者面临的随机性不够。表现在12个交易对手确定为一个小组后，此后的几轮交易没有变更小组成员，而且一些小组成员互相认识，在同一个地方交易，提高了合谋的可能性。  
+###2.针对资产的最终价值的确定，随机数设置不合理，资产价值可能为0也可能很高。这增加了实验的投机性，并不利于探讨现实中投资者的面临不确定风险下的选择。建议提高资产价值的下限。  
+###3.最终收益率的确定应该看四轮交易的平均值而不是随机抽取一轮。否则会促使交易者进行更加非理性的决策。  
+ 
+##Q8.  
+  
+###无关。根据实验数据分析可得，initial money 与 final payoff 、return rate 无直接联系。
+
+##Q9.  
+
+
+
+###1.每轮的交易时间太短，有时市场很不活跃。
+###2.在实验中，作空更容易得到高收益。   
+###3.投资者易采取极端手段获取高收益，有存在高价（异常）价格成交的数据，说明在实验中存在 共谋。  
+###4.实验者参与者以咖啡卷为目的，不以盈利为目的，是非理性人。
+###5.资产真实价格的分布不太合理。

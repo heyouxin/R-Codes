@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1475933008144.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "405E05F4",
+    "lastKnownWriteTime" : 28429440806879331,
+    "last_content_update" : 1475933008144,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "moa9l5wrn8",
+        "caption" : "stu",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=stu&cache_key=moa9l5wrn8",
+        "displayedObservations" : "3",
+        "environment" : "",
+        "object" : "stu",
+        "totalObservations" : "3",
+        "variables" : "3"
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

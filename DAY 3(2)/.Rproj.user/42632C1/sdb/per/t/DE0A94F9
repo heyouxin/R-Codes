@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#使用SQL语句\nlibrary(sqldf)\nattach(mtcars)\nnewdf<-sqldf(\"select * from mtcars where carb=1 order by mpg\",row.names=T)\nView(newdf)\ndetach(mtcars)\n\n\nView(mtcars)\nmtcars\n\n#使用subset筛选子集\nattach(mtcars)\nnewdata <- subset(mtcars,mpg<20)\ndetach(mtcars)\nView(newdata)\n\n\nfor(i in 1:10)\n  print(\"hello\")\n\ni<-10\nwhile (i>0) {\n  print(\"hello world !\")\n  i<-i*3-4\n  break\n  \n\n}\n\n\n#graph\nbarplot(anscombe$x1)\nm1<-matrix(anscombe)\nbarplot(m1)\n\nlibrary(vcd)\nArthritis\ncounts<-table(Arthritis$Improved)\nbarplot(counts,xlab = \"Improved\",ylab = \"Frequency\")\n\nsummary(mtcars)\nsapply(mtcars$mpg, mean)\n\n\nvars<-c(\"mpg\",\"hp\",\"wt\")\nhead(mtcars[vars])\nmtcars[vars]\naggregate(mtcars[vars],by=list(am=mtcars$am),mean)\n\n\nwomen\nfit<-lm(weight~height,data=women)\n#summary(fit)\n#data<-data.frame(fit$fitted.values,fit$residuals)\n#View(data)\n#plot(women$height,women$weight)\nlibrary(ggplot2)\nqplot(women$height,women$weight)\nabline(fit)\nfit$fitted.values\nfit$residuals\n\nfit2<-lm(weight~height+I(height^2),data = women)\nplot(women$height,women$weight)\nlines(women$height,fitted(fit2))\n#两种取拟合值的方法 相当于stata里的predict u    predict e,residual\nfitted(fit2)\nfit2$fitted.values\n#newdata<-data.frame(10,100)\n#predict(fit2,newdata,interval = \"confidence\")\n\n\n\n#cor()取相关系数\nstate.x77\noptions(digits = 2)\ncor(state.x77)\n\nlibrary(foreign)\nmydataframe<-read.dta(\"attend.dta\")\ncor(mydataframe$attend,mydataframe$termGPA)\n\n\nfit<-lm(mpg~hp+wt+hp:wt,data = mtcars)\nsummary(fit)\n\n\n\n#sqldf update   delete  数据增删改查全部转到SQLDF上\nlibrary(sqldf)\ndata_cars<-data.frame(mtcars)\nsql1<-sqldf(c(\"update data_cars set am='1' where am='0'\",\"delete from data_cars  where vs='0'\",\"select * from data_cars\"),row.names=T)\n#sql2<-sqldf(\"select * from data_cars\",row.names=T)\nView(sql1)\n\nlibrary(sqldf)\ndata_cars<-data.frame(mtcars)\nsql1<-sqldf(c(\"delete from data_cars  where am='0'\",\"select * from data_cars order by mpg \"),row.names=T)\n#sql2<-sqldf(\"select * from data_cars\",row.names=T)\nView(sql1)\n\n\n\n\n#按条件筛选 删除\nlibrary(dplyr)\ndata_cars<-data.frame(mtcars)\ndata_cars2<-filter(data_cars,am!='1')\nView(data_cars2)\n\nlibrary(ggplot2)\nqplot(cyl,mpg,data=mtcars)\nView(mtcars)\nmtcars\n\n\n\n",
+    "created" : 1475586749449.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3379525381",
+    "id" : "DE0A94F9",
+    "lastKnownWriteTime" : 1475510844,
+    "last_content_update" : 1475510844,
+    "path" : "~/DAY 2/sql_subset.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#getwd()\npath <- \"C:/Users/heyouxin/Documents/Flight_excel\"\nfileNames <- dir(path)  ##获取该路径下的文件名\nfileNames",
+    "created" : 1481809047681.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1069881461",
+    "id" : "5CD4A823",
+    "lastKnownWriteTime" : 1481809312,
+    "last_content_update" : 1481809312623,
+    "path" : "~/Flight_excel/批量处理文件.R",
+    "project_path" : "批量处理文件.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

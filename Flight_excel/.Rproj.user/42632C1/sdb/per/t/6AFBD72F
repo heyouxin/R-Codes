@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(openxlsx)\ndf <- read.xlsx(\"2011flights.xlsx\")\nhead(df)\n##rm(list=ls())\nlibrary(sqldf)\ndf <- read.csv(\"2011fights.csv\",encoding = 'UTF-8')\nView(df)\nattach(df2)\n#df[which((df$city1)==(df$city2)),]\n\nlibrary(openxlsx)\ndf <- read.xlsx(\"2016flights.xlsx\")\ndf <- df[,-10]\nlength(df[,1])\n\n####2016年总记录数 12035\nc1 <- as.vector(df$flight_num)\nnchar(c1)\nc1 <- as.character(c1)\nhead(c1)\n\n####删除字符串中特定字符\nc1<-gsub(\"\\\\.\",\"\",c1)\n\nView(c1)\nflight_account <- c1\nflight_account <-nchar(flight_account)\ndf <- cbind(df,flight_account)\nhead(df)\n#head(df)\n#sql1 <- sqldf(\"select count(*) from df2 \")\n#sql1\nerror_data <- df[which((is.na(df$city1))|(is.na(df$city2))),]\nlength(error_data[,1])\n#error_data\nwrite.csv(error_data,\"error_data.csv\")\n\n##除去error_data 剩下5729\ndf <- df[-which((is.na(df$city1))|(is.na(df$city2))),]\nlength(df[,1])\n\n##除去两条error 5727\ndf <- df[-which((is.na(df$city3))&(!is.na(df$city4))),]\nlength(df[,1])\n####把city3=NA提取出来\n\ndata1 <- df[which(is.na(df$city3)),]\nlength(data1[,1])\n\n####把city3!=NA,city4=NA 提取出来 \ndata2 <- df[which((!is.na(df$city3))&(is.na(df$city4))),]\nlength(data2[,1])\n\n\n####提取 city4!=NA\ndata3 <- df[which(!is.na(df$city4)),]\nlength(data3[,1])\n\n\nwrite.csv(df,\"cleaned_data_2016.csv\")\n8148+3722+165\n\n\n\n#length(df[,1])\nfor (i in 1:5755) \n{\n  if((!is.na(df[i,5])) && (is.na(df[i,6])))\n  {\n    print(df[i,])\n     \n  }\n  \n}\n!is.na(df[1,5])\n#df2[which(df2[,5]!=NA & df2[,6])=NA]\n",
+    "created" : 1481631383356.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3835843421",
+    "id" : "6AFBD72F",
+    "lastKnownWriteTime" : 1481892964,
+    "last_content_update" : 1481892964033,
+    "path" : "~/Flight_excel/clean_data.R",
+    "project_path" : "clean_data.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\noutput: \n  pdf_document: \n    keep_tex: yes\n    latex_engine: xelatex\n    includes:\n        in_header: header.tex\n---\n\n#**4.**\n\n##R code:\n\n\n```{r include=FALSE}\nlibrary(xlsx)\nlibrary(stringr)\nlibrary(splitstackshape)\n```\n\n##1.读入初步整理的excel文件\n```{r}\nfilename<-\"./advEconometric_homework_files/consumption_data.xlsx\"\nraw_data<-read.xlsx(filename,sheetName = 1,encoding = \"UTF-8\")\n```\n\n##2.按“空格”符号分割表内数据及重命名列名\n```{r}\ncol_name<-names(raw_data)\ndata<-cSplit(raw_data,col_name,\" \")\nnames(data)<-c(\"OBS\",\"year\",\"quarter\",\"YD\",\"CE\")\n#y_q <- paste0(data$year,\"-0\",data$quarter)\n#y_q <- as.character.Date(y_q)\n```\n\n##3.获取前一期数据\n```{r}\nlog_c <- log(data$CE)\nlog_c_1 <- c()\nlog_c_1[2:200] <- log_c[1:199]\nlog_c_1[1] <- NA\nlog_y <- log(data$YD)\nlog_y_1 <- c()\nlog_y_1[2:200] <- log_y[1:199]\nlog_y_1[1] <- NA\n\ndata <- cbind(data,log_c)\ndata <- cbind(data,log_y)\ndata <- cbind(data,log_c_1)\ndata <- cbind(data,log_y_1)\n```\n\\newpage\n\n##4.获取差分数据\n```{r}\ndelta_c <- c()\ndelta_y <- c()\ndelta_c[2:200] <- diff(log_c)\ndelta_c[1] <- NA\ndelta_y[2:200] <- diff(log_y)\ndelta_y[1] <- NA\ndata <- cbind(data,delta_c)\ndata <- cbind(data,delta_y)\n#View(data)\n```\n\n##5.分别做三次回归\n\n##取1953-1996的数据\n```{r}\ndata_regression <- data[-c(1:24),]\n```\n\n##对模型一进行调整 t-test \n```{r}\nfit1 <- lm(log_c~log_c_1+log_y+delta_y,data = data_regression)\nsummary(fit1)\n```\n\nwe can change the regressor so that gamma_0+gamma_1 \nis equal to the coefficient of log_y ,\nt value = 1.227   not reject the null\n\n##模型二的回归\n```{r}\nfit2 <- lm(delta_c~log_c_1+delta_y+log_y_1,data = data_regression)\nsummary(fit2)\n```\n##模型一的回归\n```{r}\nfit3 <- lm(log_c~log_c_1+log_y+log_y_1,data = data_regression)\nsummary(fit3)\n```\n\n\n\n\n\n\n",
+    "created" : 1489754284949.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3147990803",
+    "id" : "C571E05A",
+    "lastKnownWriteTime" : 1490447975,
+    "last_content_update" : 1490447975916,
+    "path" : "~/R codes/advEconometric_homework/advEconometric_homework2.Rmd",
+    "project_path" : "advEconometric_homework2.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

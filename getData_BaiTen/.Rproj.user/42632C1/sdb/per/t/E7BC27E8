@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "##firmname  URL 拼接， 存在数据框   直接操作EXCEL 不如转成CSV方便 各种问题\n##读取excel的两种方式\n##rm(list=ls())\nlibrary(openxlsx)\n#library(readxl)\n#library(openxlsx)  需要注意的是encoding='UTF-8' 否则会乱码\n#library(xlsx)这个包的rJava需要64位JAVA支持\n#library(xlsx)\nfirst_url <- \"http://so.baiten.cn/results?q=pd%253A%2528%255B2011%2520to%25202015%255D%2529%2520and%2520\"\nthird_url <- \"&type=14&s=0&law=2&v=l&page=\"\ndf <- read.xlsx(\"./files/firmname.xlsx\",1,encoding='UTF-8')\n#df <- read_excel(\"./files/firmname.xlsx\",1,encoding='UTF-8')\n\nfirmname <- df$firmname\nurl <- paste0(first_url,\"pa:(\",firmname,\")\",third_url)\ndf_url_name <- data.frame(url,firmname)\nwrite.xlsx(df_url_name,file=\"./files/url_firmname2.xlsx\")\n\n",
+    "created" : 1480567823039.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "906241182",
+    "id" : "E7BC27E8",
+    "lastKnownWriteTime" : 1481182899,
+    "last_content_update" : 1481182899763,
+    "path" : "~/R codes/getData_BaiTen/pasteURL_firmname.R",
+    "project_path" : "pasteURL_firmname.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(rvest)\nlibrary(rjson)\n#library(RCurl)\n\n#url=\"http://tianqi.2345.com/t/wea_history/js/201612/60001_201612.js\"\nweb<-read_html(\"http://tianqi.2345.com/t/wea_history/js/201612/60001_201612.js\",encoding = \"gb2312\")\n#data2<-getURL(url)\n#data2\n\n\ndata <-web %>%   \n  html_nodes (web,css=\"body\")%>%\n  html_text()\ndata\n\n\n\n\nclass(data)\nparser <- newJSONParser()\nparser$addData( data )\nparser$getObject()\nisValidJSON(data) \njson_data <- fromJSON(file=\"fin0.json\")\njson_data\ngetwd()\n",
+    "created" : 1488893955817.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1287450894",
+    "id" : "A52E212",
+    "lastKnownWriteTime" : 1488897204,
+    "last_content_update" : 1488897204817,
+    "path" : "~/R codes/environment_data/JSON.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

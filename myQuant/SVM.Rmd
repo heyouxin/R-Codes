@@ -1,0 +1,82 @@
+---
+title: "Quant Strategy"
+output:
+  word_document: default
+  pdf_document:
+    includes:
+      in_header: header.tex
+    keep_tex: yes
+  html_document: default
+---
+# 经济学院 
+
+```{r setup, include=FALSE}
+library("quantmod")
+library("zoo")
+library(caret)
+library(e1071)
+library(xlsx)
+library(PerformanceAnalytics)
+```
+## 数据清洗，针对下一期的涨跌幅：
+## 涨跌幅低于-1%记为-2; 涨跌幅高于-1%，低于0%，记为 -1;
+## 涨跌幅高于 1%记为 2; 涨跌幅低于-1%，高于0%，记为  1;
+## 读文件，lm回归判断哪些解释变量是有用的，减少嗓音。确定自变量和因变量
+```{r}
+data_sample <- read.zoo("./data/HS300_5.csv",sep=",",header=T,format = "%Y-%m-%d")
+data_sample <- na.omit(data_sample)
+fit <- lm(ret~open+close+high+low+volume+mv10+mv20+vol10+vol20+rsi5+rsi14+macd.macd1+signal.macd1+macd.macd2+signal.macd2+dn+mavg+up+pctB,data = data_sample)
+summary(fit)
+```
+## 确定训练样本和测试样本
+```{r}
+x <- data_sample[,-c(4:21)]
+y <- data_sample[,20]
+insams<- "2005-01-01"
+insame<- "2016-12-31"
+osams<- "2017-01-01"
+osame<- "2017-12-31"
+inrow <- which(index(data_sample) >= insams & index(data_sample) <= insame)
+outrow <- which(index(data_sample) >= osams & index(data_sample) <= osame)
+
+```
+
+
+## 计算SVM在2种分类机，4种核函数下模型的错误次数
+```{r}
+type <- c("C-classification","nu-classification")
+kernel <- c("linear","polynomial","radial","sigmoid")
+accuracy <- matrix(0,2,4)
+for (i in 1:2)
+{
+  for ( j in 1:4) 
+  {
+    model <- svm(x[inrow,],y[inrow],type=type[i],kernel = kernel[j])
+    pred_temp <- predict(model,x[outrow])
+    accuracy[i,j] <- sum(pred_temp!=as.vector(y[outrow]))
+  }
+}
+dimnames(accuracy) <- list(type,kernel)
+accuracy
+```
+
+
+## 由以上结果可知，使用SVM进行实验，type="C-classification",kernel = "polynomial"的模型最优。
+```{r}
+model1 <- svm(x[inrow,],y[inrow],type="C-classification",kernel = "polynomial")
+pred1 <- predict(model1,x[outrow,])
+#table(pred1,y[outrow])
+outresult_out<- confusionMatrix(pred1,y[outrow])
+outresult_out
+```
+
+## 简单回测展示2017年收益情况  预测为1或2开多仓，预测为-2开空仓
+```{R}
+signal <- ifelse( pred1==1 | pred1==2,1,ifelse(pred1==-2 ,-1,0))
+simreturn <- data_sample$ret[outrow]
+cost <- 0
+strategy_return <- Lag(simreturn)*Lag(signal)-cost
+cumm_return<- Return.cumulative(strategy_return)
+annual_return <- Return.annualized(strategy_return)
+charts.PerformanceSummary(strategy_return)
+```

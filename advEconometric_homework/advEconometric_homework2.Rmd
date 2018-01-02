@@ -1,0 +1,99 @@
+---
+output: 
+  pdf_document: 
+    keep_tex: yes
+    latex_engine: xelatex
+    includes:
+        in_header: header.tex
+---
+
+#**4.**
+
+##R code:
+
+
+```{r include=FALSE}
+library(xlsx)
+library(stringr)
+library(splitstackshape)
+```
+
+##1.读入初步整理的excel文件
+```{r}
+filename<-"./advEconometric_homework_files/consumption_data.xlsx"
+raw_data<-read.xlsx(filename,sheetName = 1,encoding = "UTF-8")
+```
+
+##2.按“空格”符号分割表内数据及重命名列名
+```{r}
+col_name<-names(raw_data)
+data<-cSplit(raw_data,col_name," ")
+names(data)<-c("OBS","year","quarter","YD","CE")
+#y_q <- paste0(data$year,"-0",data$quarter)
+#y_q <- as.character.Date(y_q)
+```
+
+##3.获取前一期数据
+```{r}
+log_c <- log(data$CE)
+log_c_1 <- c()
+log_c_1[2:200] <- log_c[1:199]
+log_c_1[1] <- NA
+log_y <- log(data$YD)
+log_y_1 <- c()
+log_y_1[2:200] <- log_y[1:199]
+log_y_1[1] <- NA
+
+data <- cbind(data,log_c)
+data <- cbind(data,log_y)
+data <- cbind(data,log_c_1)
+data <- cbind(data,log_y_1)
+```
+\newpage
+
+##4.获取差分数据
+```{r}
+delta_c <- c()
+delta_y <- c()
+delta_c[2:200] <- diff(log_c)
+delta_c[1] <- NA
+delta_y[2:200] <- diff(log_y)
+delta_y[1] <- NA
+data <- cbind(data,delta_c)
+data <- cbind(data,delta_y)
+#View(data)
+```
+
+##5.分别做三次回归
+
+##取1953-1996的数据
+```{r}
+data_regression <- data[-c(1:24),]
+```
+
+##对模型一进行调整 t-test 
+```{r}
+fit1 <- lm(log_c~log_c_1+log_y+delta_y,data = data_regression)
+summary(fit1)
+```
+
+we can change the regressor so that gamma_0+gamma_1 
+is equal to the coefficient of log_y ,
+t value = 1.227   not reject the null
+
+##模型二的回归
+```{r}
+fit2 <- lm(delta_c~log_c_1+delta_y+log_y_1,data = data_regression)
+summary(fit2)
+```
+##模型一的回归
+```{r}
+fit3 <- lm(log_c~log_c_1+log_y+log_y_1,data = data_regression)
+summary(fit3)
+```
+
+
+
+
+
+

@@ -1,0 +1,97 @@
+---
+title: "my first markdown"
+output: pdf_document
+---
+#前言
+今天虽然外面下着雨，但是我的心情很激动，国为，我马上要学会文艺化编程了。
+
+
+#第一章
+第一堂 课我们学习了一个数据集ansombe。现在我用这个数据来练习一下。先看看描述性
+
+```{python}"
+
+
+
+
+
+
+
+```
+```{r}
+#心情很好
+anscombe
+summary(anscombe)
+print("hello")
+
+```
+```{r}
+plot(anscombe$x1,anscombe$y1)
+
+```
+
+
+*斜体用星号*
+#数学公式用$$
+$$
+# 前言
+##分析anscombe数据
+##描述统计分析
+##回归方程(y1~x1)
+##画图
+##结论
+```{r}
+women
+cor(women$height,women$weight)
+summary(women)
+
+
+cor(anscombe)
+fit <- lm(y1~x1,anscombe)
+plot(anscombe$x1,anscombe$y1)
+abline(fit)
+
+
+
+```
+
+
+
+```{r}
+#setClass("employee",representation(name="character",salary="numeric",union="loical"))
+#"employee"
+#joe <- new("employee",name="joe")
+#mean
+
+
+
+getwd()
+
+
+
+#UseMethod
+
+
+ 
+data1 <- read.csv("cor.csv")
+View(data1)
+
+x <- c(1:10)
+y <- c(10:1)
+gra1 <- plot(x,y,xlab="x",ylab="y")
+
+hist(x)
+
+ls()
+
+
+#?strsplit
+
+
+```
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "hn <- hist(Nile)\nprint(hn)\nsummary(Nile)\n \nclass(Nile)\nattributes(Nile)\nView(Nile)\n\nmtcars\nfit <- lm(mpg~wt,data=mtcars)\nattributes(fit)\nclass(fit)\nfit\nattributes(summary(fit))\n\n\nk <- 0\nn <- seq(1,6 ,by=2)\nall(n<5)\nfor (i in n) {\n  k <- k+1\n  \n#vector add  delete　重构一个ｖｅｃｔｏｒ\nx <- c(1,2,3,4)\ndim(x)\nx <- c(x[1:2],x[4])\nx\n\n\nm1 <- matrix(c(1,2,3,4),nrow=2, byrow = F)\nm1\ndim(m1)\n}\n\n\nexample(\"persp\")\npersp\n\n\n\n#row.names not set , either insert more a column denote the row.names\n#so,data.frame is actually a table\nrowname <- c(\"n1\",\"n2\",\"n3\")\nname <- c(\"a\",\"b\",\"c\")\nage <- c(1,2,3)\nd1 <- data.frame(name,age,row.names = rowname)\n#d1 <- edit(d1)\nView(d1)\ndl <- lapply(d1, sort)\nt1 <- table(name,age)\n#t1 <- edit(t1)\n\n#？把row.names取出来，当作data.frame的元素？\n#？table的用法？\n\n\nl <- list(c(1,2,3),c(\"a\",\"b\"))\nl\n\ntable(c(5,12,13,12,8,5))\n\n\n#手动修改元素\nf1 <- c(1,2,2,3)\nf2 <- edit(f1)\nView(f2)\n\n\n#引用function\nsource(\"sour.R\")\nplot(func,0,10)\n\n\nD(expression(sin(x)*cos(x)) ,\"x\")\nintegrate(function(x) x,0,1)\n\n\nmtcars\nfit <- lm(mpg~wt,data=mtcars)\nclass(fit)\n?getAnywhere\n\n\nvec1 <- c(3,1,4,5)\n\n# ?scan ?\ns1 <- scan(\"11.txt\")\n\nw <- readline()\ncat(\"aa\",\"1\",\"2a4\",sep=\"\\n\")\n\n\nname <- c(\"a\",\"b\",\"c\")\nadvmic <- c(10,20,39)\nadvmac <- c(500,600,1000)\nstu <- data.frame(name,advmic,advmac)\nstu2 <- edit(stu)\nView(stu2)\n\n\n\nlibrary(sqldf)\n\nfor (i in 1:10) {\n  sql1 <- sqldf(\"insert stu values('d',1000,1000)\",\"select * from stu\")\n  \n}\nView(sql1)\n\n\n\n\n\n\na <- c(1,2,3)\na <- as.character(a)\nis.character(a)\n\n\n\n\n\n\n\n\n\n\n",
+    "created" : 1475635682043.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "19|14|32|0|\n",
+    "hash" : "861102619",
+    "id" : "7A9B71A9",
+    "lastKnownWriteTime" : 1476025465,
+    "last_content_update" : 1476025465903,
+    "path" : "~/DAY 4/art of R programming.R",
+    "project_path" : "art of R programming.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

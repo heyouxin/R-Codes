@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "install.packages(\"shiny\")\nshiny::runApp()\nrunApp()\nrunApp()\nrunApp()\nrunApp()\nrunApp()\n",
+    "created" : 1475939711817.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2908632002",
+    "id" : "FBCA6D93",
+    "lastKnownWriteTime" : 1475554993,
+    "last_content_update" : 1475554993,
+    "path" : "~/DAY 3/.Rhistory",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_history"
+}

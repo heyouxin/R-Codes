@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(rvest)\nlego_movie <- read_html(\"http://www.imdb.com/title/tt1490017/\")\n\nrating <- lego_movie %>% \n  html_nodes(\"strong span\") %>%\n  html_text() %>%\n  as.numeric()\nrating\n#> [1] 7.8\n\ncast <- lego_movie %>%\n#  html_nodes(\"#titleCast .itemprop span\") %>%\n   html_nodes(\" .itemprop span\") %>%\n   html_text()\ncast\n#>  [1] \"Will Arnett\"     \"Elizabeth Banks\" \"Craig Berry\"    \n#>  [4] \"Alison Brie\"     \"David Burrows\"   \"Anthony Daniels\"\n#>  [7] \"Charlie Day\"     \"Amanda Farinos\"  \"Keith Ferguson\" \n#> [10] \"Will Ferrell\"    \"Will Forte\"      \"Dave Franco\"    \n#> [13] \"Morgan Freeman\"  \"Todd Hansen\"     \"Jonah Hill\"\n\nposter <- lego_movie %>%\n  html_nodes(\".poster img\") %>%\n  html_attr(\"src\")\nposter\n\n\nView(c(\"rating\",rating,\"cast\",cast,\"poster\",poster))\nis.list(rating)\nis.vector(rating)\nis.list(cast)\nView(poster)\n#getdata<-rbind(rating,cat,poster)\n\n\nlibrary(rvest)\nsurface_price <- read_html(\"http://search.jd.com/Search?keyword=surface%20pro4&enc=utf-8&suggest=1.rem.0.0&wq=surface%20pro4&pvid=tw4k3vti.jvdu6h\")\n\nprice <- surface_price %>% \n  html_nodes(\"strong i\") %>%\n  html_text() %>%\n  as.numeric()\nView(price)\n\n\n\n\n\n\nlibrary(rvest)\ndouban_movie <- read_html(\"https://movie.douban.com/tag/%E5%96%9C%E5%89%A7\")\n\ntitle <- douban_movie %>%\n  #css selector\n  html_nodes(\".p12 div a\")%>%\n  html_text()\ntitle\n\nprice <- douban_movie %>% \n  html_nodes(\"table tr td div div span\") %>%\n  html_text() \n  #as.numeric()\nprice\n\n\nhist(rnorm(100))\n\n\nNile\nhist(Nile)\n\n#function\noddcount <- function(x){\n  k <- 0\n  for (n in x) {\n    if(n%%2==1) k <- k+1\n    \n  }\n  return(k)\n}\n\noddcount(c(1,3,5,7))\nmode(c(1,3))\n\nu <- paste(\"a\",\"b\",\"c\")\nu\nv <- strsplit(u,\" \")\nv\n\nm <- rbind(c(1,4),c(2,2))\nm\n\nmat <-matrix(1:4,nrow = 2)\nmat\n\nhis <- hist(Nile)\n\nname <- c(\"a\",\"b\",\"c\")\nage <- c(1,2,NA)\n\nd <- data.frame(name,age)\nd\n\n\nsummary(Nile)\nmode(summary(Nile))\nis.classes.frame(summary(Nile))\n\n\n\n\n\n\n",
+    "created" : 1475555049409.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1194457413",
+    "id" : "46486841",
+    "lastKnownWriteTime" : 1475597418,
+    "last_content_update" : 1475597418340,
+    "path" : "~/DAY 3(2)/rvest.R",
+    "project_path" : "rvest.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

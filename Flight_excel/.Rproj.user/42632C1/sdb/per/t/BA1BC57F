@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# ####questions\n# 1.并行计算不是多线程。R语言不支持多线程。并行计算是两只手做一件事，多线程是一只手做一件事。有人要开发支持多线程的R语言的消息。\n# 2.RS多开，在wins下开多进程成本高，通信是个问题。\n# 3.full_join  RStudio崩溃  merge(,,all = T) 与 full_join是一个意思？  merge(,,all = F)与inner_join\n# 4.han_xin excel表格的处理思路\n# ####\n\n\n\n\n####\n\n\n\n\nlibrary(dplyr)\nlibrary(openxlsx)\ndf <- read.csv(\"insert_record_2016.csv\")\n#df <- df[,-1]\n#length(df[,1])\nhead(df)\n\n\n\ndf\n\n\ndf2 <- read.xlsx(\"sources1218.xlsx\")\nhead(df2)\n#df2 <- df2[,-2]\nlength(df2[,1])\n\ndf3<- right_join(df,df2)\nhead(df3)\n#df3 <- merge(df,df2,all = T)\ndf3 <- merge(df,df2)\n\n####找出未匹配的\n# View(df3)\n# length(df3[,1])\n# View(df3[which(is.na(df3$flag)),])\n# write.csv(df3,\"df3.csv\")\n# write.csv(df3[which(is.na(df3$flag)),],\"2011_no_find.csv\")\n# df3<-df3[-which(as.character(df3$city1)==as.character(df3$city2)),]\n# length(df3[,1])\n# df3<-df3[-which(is.na(df3$flag)),]\n# df3<-df3[-which(is.na(df3$city1)),]\n#write.csv(df3[which(is.na(df3$city1)),],\"2016_in_Dic_no_File.csv\")\n\n#head(df4)\n# #df4$flight <- substr(df4$flight_num,1,2)\n# head(df4)\n# df4 <- df4[,-1]\n# length(df4[,1])\n\n# sql1 <- sqldf(\"select flag,count(*) flag_num from df3 group by flag\")\n# head(sql1)\n# class(sql1)\n\ndf4 <- df3\nlibrary(sqldf)\nattach(df4)\nsql2 <- sqldf(\"select city1_2,flag,flight, sum(flight_account) flight_total_account,plane,remarks from df4 group by flag,flight\")\n\nwrite.csv(sql2,\"group_2016_1218.csv\")\n\n\n\n",
+    "created" : 1481630522004.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2438616540",
+    "id" : "BA1BC57F",
+    "lastKnownWriteTime" : 1482065601,
+    "last_content_update" : 1482065601804,
+    "path" : "~/Flight_excel/merge_source.R",
+    "project_path" : "merge_source.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

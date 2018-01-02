@@ -1,0 +1,257 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{unicode=true,
+            pdftitle={Data\_mining\_Cup 2017},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Data\_mining\_Cup 2017}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{ctex} 
+\setCJKmainfont{宋体}                     % 中文缺省字体，
+\setCJKsansfont{黑体}                      % 中文无衬线字体，   调用命令： \sffamily
+\setCJKmonofont{仿宋}     % 中文打字机（等宽）字体， 调用命令： \ttfamily
+
+%\usepackage{ctex} 
+%\setCJKmainfont{Adobe 宋体 Std}                     % 中文缺省字体，
+%\setCJKsansfont{Adobe 黑体 Std}                      % 中文无衬线字体，   调用命令： \sffamily
+%\setCJKmonofont{Adobe 仿宋 Std}     % 中文打字机（等宽）字体， 调用命令： \ttfamily
+
+\begin{document}
+\maketitle
+
+\section{经济学院 何友鑫 15320161152320}\label{--15320161152320}
+
+\subsection{读文件，确定自变量和因变量}
+
+\subsection{涨跌幅低于-1\%记为0;涨跌幅高于-1\%，低于1\%，记为1;涨跌幅高于1\%记为2}\label{-10-11112}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataTrain <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/hsp.csv"}\NormalTok{)}
+\NormalTok{dataTrain <-}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(dataTrain)}
+\NormalTok{x <-}\StringTok{ }\NormalTok{dataTrain[,-}\DecValTok{16}\NormalTok{]}
+\NormalTok{y <-}\StringTok{ }\NormalTok{dataTrain[,}\DecValTok{16}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{计算SVM在2种分类机，4种核函数下模型的错误次数}\label{svm24}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{type=}\KeywordTok{c}\NormalTok{(}\StringTok{"C-classification"}\NormalTok{,}\StringTok{"nu-classification"}\NormalTok{)}
+\NormalTok{kernel=}\KeywordTok{c}\NormalTok{(}\StringTok{"linear"}\NormalTok{,}\StringTok{"polynomial"}\NormalTok{,}\StringTok{"radial"}\NormalTok{,}\StringTok{"sigmoid"}\NormalTok{)}
+\NormalTok{accuracy=}\KeywordTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\NormalTok{for (i in }\DecValTok{1}\NormalTok{:}\DecValTok{2}\NormalTok{)}
+\NormalTok{\{}
+  \NormalTok{for ( j in }\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{) }
+  \NormalTok{\{}
+    \NormalTok{model <-}\StringTok{ }\KeywordTok{svm}\NormalTok{(x,y,}\DataTypeTok{type=}\NormalTok{type[i],}\DataTypeTok{kernel =} \NormalTok{kernel[j])}
+    \NormalTok{pred_temp=}\KeywordTok{predict}\NormalTok{(model,x)}
+    \NormalTok{accuracy[i,j]=}\KeywordTok{sum}\NormalTok{(pred_temp!=y)}
+  \NormalTok{\}}
+\NormalTok{\}}
+\KeywordTok{dimnames}\NormalTok{(accuracy)=}\KeywordTok{list}\NormalTok{(type,kernel)}
+\NormalTok{accuracy}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   linear polynomial radial sigmoid
+## C-classification    1014       1023    967    1509
+## nu-classification    987       1018    926    1346
+\end{verbatim}
+
+\subsection{\texorpdfstring{由以上结果可知，使用SVM进行实验，type=``nu-classification'',kernel
+=
+``radial''的模型最优。}{由以上结果可知，使用SVM进行实验，type=nu-classification,kernel = radial的模型最优。}}\label{svmtypenu-classificationkernel-radial}
+
+\subsection{实验1用训练数据的前2666条作为训练集，后200条作为测试集，看看预测结果}\label{12666200}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model1 <-}\StringTok{ }\KeywordTok{svm}\NormalTok{(x[}\DecValTok{1}\NormalTok{:}\DecValTok{2666}\NormalTok{,],y[}\DecValTok{1}\NormalTok{:}\DecValTok{2666}\NormalTok{],}\DataTypeTok{type=}\StringTok{"nu-classification"}\NormalTok{,}\DataTypeTok{kernel =} \StringTok{"radial"}\NormalTok{)}
+\NormalTok{pred1 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(model1,x[}\DecValTok{2667}\NormalTok{:}\DecValTok{2866}\NormalTok{,])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(pred1,y[}\DecValTok{2667}\NormalTok{:}\DecValTok{2866}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      
+## pred1   0   1   2
+##     0   1   0   0
+##     1   7 179  12
+##     2   0   0   1
+\end{verbatim}
+
+\subsection{实验2使用全部训练样本展示预测结果，并与真实情况的比较。}\label{2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model_fitted <-}\StringTok{ }\KeywordTok{svm}\NormalTok{(x,y,}\DataTypeTok{type=}\StringTok{"nu-classification"}\NormalTok{,}\DataTypeTok{kernel =} \StringTok{"radial"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(model_fitted)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## svm.default(x = x, y = y, type = "nu-classification", kernel = "radial")
+## 
+## 
+## Parameters:
+##    SVM-Type:  nu-classification 
+##  SVM-Kernel:  radial 
+##       gamma:  0.06666667 
+##          nu:  0.5 
+## 
+## Number of Support Vectors:  2138
+## 
+##  ( 960 551 627 )
+## 
+## 
+## Number of Classes:  3 
+## 
+## Levels: 
+##  0 1 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(model_fitted,x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(pred,y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     y
+## pred    0    1    2
+##    0  139   39   33
+##    1  399 1465  319
+##    2   28  108  336
+\end{verbatim}
+
+\end{document}

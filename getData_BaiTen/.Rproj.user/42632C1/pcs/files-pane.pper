@@ -1,0 +1,9 @@
+{
+    "path" : "~/getData_BaiTen",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

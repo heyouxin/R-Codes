@@ -1,0 +1,306 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{}
+  \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{ctex} 
+\setCJKmainfont{宋体}                     % 中文缺省字体，
+\setCJKsansfont{黑体}                      % 中文无衬线字体，   调用命令： \sffamily
+\setCJKmonofont{仿宋}     % 中文打字机（等宽）字体， 调用命令： \ttfamily
+
+%\usepackage{ctex} 
+%\setCJKmainfont{Adobe 宋体 Std}                     % 中文缺省字体，
+%\setCJKsansfont{Adobe 黑体 Std}                      % 中文无衬线字体，   调用命令： \sffamily
+%\setCJKmonofont{Adobe 仿宋 Std}     % 中文打字机（等宽）字体， 调用命令： \ttfamily
+
+\begin{document}
+
+\section{\texorpdfstring{\textbf{4.}}{4.}}\label{section}
+
+\subsection{R code:}\label{r-code}
+
+\subsection{1.读入初步整理的excel文件}\label{excel}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{filename<-}\StringTok{"./advEconometric_homework_files/consumption_data.xlsx"}
+\NormalTok{raw_data<-}\KeywordTok{read.xlsx}\NormalTok{(filename,}\DataTypeTok{sheetName =} \DecValTok{1}\NormalTok{,}\DataTypeTok{encoding =} \StringTok{"UTF-8"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{2.按``空格''符号分割表内数据及重命名列名}{2.按空格符号分割表内数据及重命名列名}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{col_name<-}\KeywordTok{names}\NormalTok{(raw_data)}
+\NormalTok{data<-}\KeywordTok{cSplit}\NormalTok{(raw_data,col_name,}\StringTok{" "}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(data)<-}\KeywordTok{c}\NormalTok{(}\StringTok{"OBS"}\NormalTok{,}\StringTok{"year"}\NormalTok{,}\StringTok{"quarter"}\NormalTok{,}\StringTok{"YD"}\NormalTok{,}\StringTok{"CE"}\NormalTok{)}
+\CommentTok{#y_q <- paste0(data$year,"-0",data$quarter)}
+\CommentTok{#y_q <- as.character.Date(y_q)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{3.获取前一期数据}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{log_c <-}\StringTok{ }\KeywordTok{log}\NormalTok{(data$CE)}
+\NormalTok{log_c_1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\NormalTok{log_c_1[}\DecValTok{2}\NormalTok{:}\DecValTok{200}\NormalTok{] <-}\StringTok{ }\NormalTok{log_c[}\DecValTok{1}\NormalTok{:}\DecValTok{199}\NormalTok{]}
+\NormalTok{log_c_1[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\OtherTok{NA}
+\NormalTok{log_y <-}\StringTok{ }\KeywordTok{log}\NormalTok{(data$YD)}
+\NormalTok{log_y_1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\NormalTok{log_y_1[}\DecValTok{2}\NormalTok{:}\DecValTok{200}\NormalTok{] <-}\StringTok{ }\NormalTok{log_y[}\DecValTok{1}\NormalTok{:}\DecValTok{199}\NormalTok{]}
+\NormalTok{log_y_1[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\OtherTok{NA}
+
+\NormalTok{data <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(data,log_c)}
+\NormalTok{data <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(data,log_y)}
+\NormalTok{data <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(data,log_c_1)}
+\NormalTok{data <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(data,log_y_1)}
+\end{Highlighting}
+\end{Shaded}
+
+\newpage
+
+\subsection{4.获取差分数据}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{delta_c <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\NormalTok{delta_y <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\NormalTok{delta_c[}\DecValTok{2}\NormalTok{:}\DecValTok{200}\NormalTok{] <-}\StringTok{ }\KeywordTok{diff}\NormalTok{(log_c)}
+\NormalTok{delta_c[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\OtherTok{NA}
+\NormalTok{delta_y[}\DecValTok{2}\NormalTok{:}\DecValTok{200}\NormalTok{] <-}\StringTok{ }\KeywordTok{diff}\NormalTok{(log_y)}
+\NormalTok{delta_y[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\OtherTok{NA}
+\NormalTok{data <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(data,delta_c)}
+\NormalTok{data <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(data,delta_y)}
+\CommentTok{#View(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{5.分别做三次回归}
+
+\subsection{取1953-1996的数据}\label{1953-1996}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data_regression <-}\StringTok{ }\NormalTok{data[-}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{24}\NormalTok{),]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{对模型一进行调整 t-test}\label{-t-test}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(log_c~log_c_1+log_y+delta_y,}\DataTypeTok{data =} \NormalTok{data_regression)}
+\KeywordTok{summary}\NormalTok{(fit1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log_c ~ log_c_1 + log_y + delta_y, data = data_regression)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.033875 -0.006364  0.000967  0.006110  0.025212 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.06394    0.02166   2.952   0.0036 ** 
+## log_c_1      0.96923    0.02231  43.443  < 2e-16 ***
+## log_y        0.02584    0.02105   1.227   0.2213    
+## delta_y      0.26515    0.05645   4.697 5.37e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.0096 on 172 degrees of freedom
+## Multiple R-squared:  0.9996, Adjusted R-squared:  0.9996 
+## F-statistic: 1.633e+05 on 3 and 172 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+we can change the regressor so that gamma\_0+gamma\_1 is equal to the
+coefficient of log\_y , t value = 1.227 not reject the null
+
+\subsection{模型二的回归}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(delta_c~log_c_1+delta_y+log_y_1,}\DataTypeTok{data =} \NormalTok{data_regression)}
+\KeywordTok{summary}\NormalTok{(fit2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = delta_c ~ log_c_1 + delta_y + log_y_1, data = data_regression)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.033875 -0.006364  0.000967  0.006110  0.025212 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.06394    0.02166   2.952   0.0036 ** 
+## log_c_1     -0.03077    0.02231  -1.379   0.1696    
+## delta_y      0.29099    0.05511   5.280 3.86e-07 ***
+## log_y_1      0.02584    0.02105   1.227   0.2213    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.0096 on 172 degrees of freedom
+## Multiple R-squared:  0.1913, Adjusted R-squared:  0.1772 
+## F-statistic: 13.57 on 3 and 172 DF,  p-value: 5.499e-08
+\end{verbatim}
+
+\subsection{模型一的回归}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit3 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(log_c~log_c_1+log_y+log_y_1,}\DataTypeTok{data =} \NormalTok{data_regression)}
+\KeywordTok{summary}\NormalTok{(fit3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log_c ~ log_c_1 + log_y + log_y_1, data = data_regression)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.033875 -0.006364  0.000967  0.006110  0.025212 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.06394    0.02166   2.952   0.0036 ** 
+## log_c_1      0.96923    0.02231  43.443  < 2e-16 ***
+## log_y        0.29099    0.05511   5.280 3.86e-07 ***
+## log_y_1     -0.26515    0.05645  -4.697 5.37e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.0096 on 172 degrees of freedom
+## Multiple R-squared:  0.9996, Adjusted R-squared:  0.9996 
+## F-statistic: 1.633e+05 on 3 and 172 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\end{document}

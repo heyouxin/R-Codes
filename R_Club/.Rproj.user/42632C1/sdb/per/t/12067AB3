@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "apply(mtcars[,c(1,3,4,5,6,7)],2,median)\n",
+    "created" : 1479803544578.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1376354562",
+    "id" : "12067AB3",
+    "lastKnownWriteTime" : 1479808620,
+    "last_content_update" : 1479808620193,
+    "path" : "~/R codes/R_Club/11_22 course.R",
+    "project_path" : "11_22 course.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

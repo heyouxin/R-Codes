@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list=ls())\nlibrary(httr)\nlibrary(rvest)\nlibrary(RSelenium)\nlibrary(openxlsx)\nlibrary(splitstackshape)\ncity_id<-read.xlsx(\"city_id.xlsx\")\n\n\nurl1<-\"http://tianqi.2345.com/wea_history/\"\nremDr <- remoteDriver(remoteServerAddr = \"localhost\" \n                      , port = 4444\n                      , browserName = \"chrome\"\n)\nremDr$open()\n##data_total所有城市的数据\ndata_total<-data.frame()\n\n\n\n###循环次数与年份、月份对照表 j year  month\nyear_mon<-read.xlsx(\"j_year_month.xlsx\",colNames = F)\n#View(year_mon)\n#for (i in 308:368)\nfor (i in 307:307)\n{\n  city<-city_id[i,1]\n  id<-city_id[i,2]\n  url<-paste0(url1,id,\".htm\")\n  \n  remDr$navigate(url)\n  #webElem_data <- remDr$findElements(using = 'css selector', \"#weather_tab\")\n  webElem <- remDr$findElement(using = 'css selector', \".prev\")\n  webElem2 <- remDr$findElement(using = 'css selector', \".next\")\n  ##data_all每一个城市的所有数据\n  data_all<-data.frame()\n  #for (j in 1:73)\n  for (j in 1:63)\n  {\n\n    \n    flag<-T\n    #Sys.sleep(0.5)\n    webElem_data <- remDr$findElements(using = 'css selector', \"#weather_tab\")\n    #Sys.sleep(0.5)\n    #data_get<-unlist(webElem_data$getElementText())\n    #data_get<-unlist(webElem_data$getElementText())\n    data_get <- unlist(lapply(webElem_data, function(x){x$getElementText()}))\n    #webElem_data<-NULL\n    data_get2<-strsplit(data_get,\"\\n\")\n    \n    ####这里可以考虑stringr的包 str_split \n    \n    year_get<-substr(data_get2[[1]][2],1,4)\n    mon_get<-substr(data_get2[[1]][2],6,7)\n    flag<-!((year_get==year_mon[j,1])&&(mon_get==year_mon[j,2]))\n    while(flag)\n    {\n      webElem <- remDr$findElement(using = 'css selector', \".prev\")\n      webElem2 <- remDr$findElement(using = 'css selector', \".next\")\n      \n      webElem2$clickElement()\n      Sys.sleep(3)\n      webElem$clickElement()\n\n      webElem_data <- remDr$findElements(using = 'css selector', \"#weather_tab\")\n      #Sys.sleep(0.5)\n      #data_get<-unlist(webElem_data$getElementText())\n      #data_get<-unlist(webElem_data$getElementText())\n      data_get <- unlist(lapply(webElem_data, function(x){x$getElementText()}))\n      #webElem_data<-NULL\n      data_get2<-strsplit(data_get,\"\\n\")\n      year_get<-substr(data_get2[[1]][2],1,4)\n      mon_get<-substr(data_get2[[1]][2],6,7)\n      flag<-!((year_get==year_mon[j,1])&&(mon_get==year_mon[j,2]))\n\n\n    }\n    \n    data_get3<-as.data.frame(data_get2)\n    col_name<-names(data_get3)\n    data_get3<-cSplit(data_get3,col_name,\" \")\n    data_get3<-data_get3[-1,]\n    data_get3<-data_get3[,1:6]\n    names(data_get3)<-c(\"日期\",\"最高气温\",\"最低气温\",\"天气\",\"风向风力\",\"空气质量指数\")\n    data_get3<-cbind(data_get3,\"城市\"=city)\n    data_all<-rbind(data_all,data_get3)\n\n  \n      \n    webElem <- remDr$findElement(using = 'css selector', \".prev\")\n    webElem$clickElement()\n    #Sys.sleep(1)\n    #计算太快会连续点两次next page\n    Sys.sleep(2)\n\n    \n  }\n\n  Sys.sleep(1)\n  webElem_data <- remDr$findElements(using = 'css selector', \"#weather_tab\")\n  #data_get<-unlist(webElem_data$getElementText())\n  data_get <- unlist(lapply(webElem_data, function(x){x$getElementText()}))\n  data_get2<-strsplit(data_get,\"\\n\")\n  data_get3<-as.data.frame(data_get2)\n  col_name<-names(data_get3)\n  data_get3<-cSplit(data_get3,col_name,\" \")\n  data_get3<-data_get3[-1,]\n  data_get3<-data_get3[,1:6]\n  names(data_get3)<-c(\"日期\",\"最高气温\",\"最低气温\",\"天气\",\"风向风力\",\"空气质量指数\")\n  data_get3<-cbind(data_get3,\"城市\"=city)\n  data_all<-rbind(data_all,data_get3)\n  data_total<-rbind(data_total,data_all)\n  \n  data_total2<-unique(data_total)\n  \n}\n\n\n#as.Date(\"2017-02-18\")-as.Date(\"2011-01-01\")\n\n#write.csv(data_total2,\"weather_city_307.csv\")\n\n#city_id[308,1]\n\n",
+    "created" : 1487415177815.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1396563223",
+    "id" : "91B116A",
+    "lastKnownWriteTime" : 1487843951,
+    "last_content_update" : 1487843951838,
+    "path" : "~/R codes/getData_2345_wea/getData_2345_wea.R",
+    "project_path" : "getData_2345_wea.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

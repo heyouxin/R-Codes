@@ -1,0 +1,35 @@
+#search pattern from a vector_string
+string_c <- c("aaac12","paul bd","ttthujjn","rererfgggp")
+n <- grep("p",string_c)
+string_c[n]
+
+
+#?????cat() paste()????
+x <- paste("123","adf",seq="")
+y <- cat("123","adf",seq="")
+x     
+
+###questions
+###??????     R的内存管理，变量在RStudio退出之后还保存在内存，是否是因为R没退出的原因？重启电脑以后是否变量值还在？？？
+
+####？？？？重启电脑 也是直接把变量值读到内存，R是如何释放内存的？？？？？
+###C++里编程基本上都是用完的数据结构变量，直接释放内存。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

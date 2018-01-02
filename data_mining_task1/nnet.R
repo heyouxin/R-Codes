@@ -1,0 +1,10 @@
+library(nnet)
+set.seed(123)
+sam <- sample(x,5000)
+yy <- class.ind(y)
+
+model1 <- nnet(x,yy ,range=1/max(abs(x)),size=3,maxitt=500,decay=5e-4)
+pre <- predict(model1,x)
+#View(pre)
+true <- max.col(yy)
+table(true,max.col(pre))

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\nlibrary(xlsx)\nlibrary(reshape2)\nEDINEQ<-read.xlsx(\"C:\\\\Users\\\\heyouxin\\\\Desktop\\\\EDINEQ.xlsx\",header=T,1,encoding = \"UTF-8\")\nEDINEQ <- na.omit(EDINEQ)\nEDINEQ <- EDINEQ[-20,]\n\nGR<-read.xlsx(\"C:\\\\Users\\\\heyouxin\\\\Desktop\\\\GR.xlsx\",header=T,1,encoding=\"UTF-8\")\nGR <- na.omit(GR)\nGR <- GR[-20,]\n\nEDINEQ<-melt(EDINEQ,id.vars='年份',variable.name='省份',value.name='EDINEQ')\nEDINEQ$省份 <- substr(EDINEQ$省份,4,5)\nView(EDINEQ)\n\nGR<-melt(GR,id.vars='年份',variable.name='省份',value.name='GR')\nView(GR)\n                                                                 ",
+    "created" : 1489761987326.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "246398837",
+    "id" : "1D05AB4E",
+    "lastKnownWriteTime" : 1489829940,
+    "last_content_update" : 1489829940,
+    "path" : "~/R codes/advEconometric_homework/melt_using.R",
+    "project_path" : "melt_using.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

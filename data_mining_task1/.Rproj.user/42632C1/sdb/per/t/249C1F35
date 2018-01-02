@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\noutput: \n  pdf_document: \n    keep_tex: yes\n    latex_engine: xelatex\n    includes:\n        in_header: header.tex\n---\n\n#**5.**\n\n##R code:\n\n```{r}\nlibrary(ggplot2)\nnorm_distribution<-function(num)\n{\n  rnorm(num,0,1)\n}\n\nchisq_distribution<-function(num)\n{\n  rchisq(num,12)\n}\n\ninverse_chisq_distribution<-function(num)\n{\n  1/(rchisq(num,12))\n}\n\ncauchy_distribution<-function(num)\n{\n  rcauchy(num)\n}\n\nx_bar_plot<-function(func)\n{\n  n<-seq(100,1000,100)\n  set.seed(520)\n  x<-sapply(n, func)\n  x_bar<-sapply(x, mean)\n  #print(paste0(\"mean of x_bar=\",mean(x_bar)))\n  q<-qplot(n,x_bar)\n  q+scale_x_continuous(breaks = n)\n}\n```\n\n\\newpage\n\n\n##(a)\n\n```{r}\nx_bar_plot(norm_distribution)\n```\n\n###conclusion:\n###1.x_bar围绕分布的期望EX=0.00波动。\n###2.x_bar与sample size 没有必然联系，并不存在sample size 越大,x_bar越接近于EX。同时可用n=1000,2000...10000验证。\n\n<br/>\n<br/>\n\\newpage\n\n##(b)\n\n```{r}\nx_bar_plot(chisq_distribution)\n```\n\n###conclusion:\n###1.x_bar围绕分布的期望EX=12波动。\n###2.x_bar与sample size 没有必然联系，并不存在sample size 越大,x_bar越接近于EX。\n\n<br/>\n<br/>\n\\newpage\n\n##(c)\n```{r}\nx_bar_plot(inverse_chisq_distribution)\n```\n\n###conclusion:\n###1.x_bar围绕0.1波动。\n###2.x_bar与sample size 没有必然联系，并不存在sample size 越大,x_bar越接近于0.1。\n\n<br/>\n<br/>\n\\newpage\n\n##(d)\n```{r}\nx_bar_plot(cauchy_distribution)\n```\n\n###conclusion:\n###1.x_bar围绕0.00波动，大多数点波动范围非常小,近乎接近于0.00。但是个别点与0.00偏差很大。\n###2.x_bar与sample size 没有必然联系，并不存在sample size 越大,x_bar越接近于0.00。",
+    "created" : 1511058253911.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "32446418",
+    "id" : "249C1F35",
+    "lastKnownWriteTime" : 1488721593,
+    "last_content_update" : 1488721593,
+    "path" : "~/R codes/advEconometric_homework/advEconometric_homework1.Rmd",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#rm(list = ls())\nlibrary(rvest)\nstart<-as.Date(\"1996-06-27\") \nend<-as.Date(\"2017-12-7\")\ndate <- seq(from=start,to=end,by=7) \n#date <- as.data.frame(date)\n\n# year <- format(date,format=\"%Y\") \n# month <- format(date,format=\"%m\") \n# day <- format(date,format=\"%d\") \n# date_all <- data.frame(date,year,month,day)\n\ndir(\"./data\")\n\ndate_ch <- as.character(format(date,\"%Y%m%d\"))\n\n\ndate1<- \"19960627\"\ndate2<- \"20080703\"\ndate_part <-  date_ch[date_ch>=date1 & date_ch<date2]\n\nf_gsub <- function(table)\n{\n  \n  gsub(\"\\u00A0\",\"\",table)\n  \n}\n\ntotal_assets <- data.frame()\nfor (i in c(1:2)) \n{\n  date_er <- c(date[i],date[i]+1,date[i]+2)\n  date_er <- as.character(date_er,\"%Y%m%d\")\n  for (n in 1:3) \n  {\n\n    tryCatch( \n      {\n        url <- paste0(\"https://www.federalreserve.gov/releases/H41/\",date_er[n],\"/h41.htm\")\n        web <- read_html(url)\n        \n        #table_index <- c(\"2\",\"5\",\"14\")\n        #tryCatch(\n        #{\n          \n          table_2 <- web %>%   \n            html_nodes(xpath=\"/html/body/table[2]\") %>%\n            html_table(fill=T)\n            \n        #},error=function(e){}\n        #)\n        table_2 <- as.data.frame(table_2)\n        table_2 <- sapply(table_2,f_gsub)\n        total_assets_2 <- table_2[toupper(table_2[,1])==\"TOTALASSETS\",]\n        print(total_assets_2)\n        total_assets_2 <- as.vector(total_assets_2)\n        total_assets_2 <- c(as.character(date_er[n]),total_assets_2)\n        if(i==1)\n        {\n          total_assets <- total_assets_2\n        }\n        else\n        {\n          total_assets <- rbind(total_assets,total_assets_2)\n        }\n        total_assets_2 <- NULL\n      },\n      error=function(e)\n      {\n        print(date_er[i])\n      })\n    \n    \n  }\n\n \n}   \n\n\ntotal_assets <-  as.data.frame(total_assets)    \n\nwrite.csv(total_assets,\"total_assets_2.csv\",row.names = F)\n\n\n#1996\n#/html/body/table[2]\n\n#20080703\n#/html/body/table[5]\n\n\n#20141204\n#/html/body/table[14]\n\n\n\n\n\n\n",
+    "created" : 1513956608421.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3188051676",
+    "id" : "DDF5933D",
+    "lastKnownWriteTime" : 1512916403,
+    "last_content_update" : 1512916403,
+    "path" : "~/R codes/get_H41/main2.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

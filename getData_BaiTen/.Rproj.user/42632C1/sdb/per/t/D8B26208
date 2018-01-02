@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(e1071)\nlibrary(xlsx)\n\ndataTrain <- read.table(\"./竞赛实验数据2017/kddtrain2017.txt\")\nx <- dataTrain[,-101]\ny <- dataTrain[,101]\n#nrow(dataTrain)\n#summary(dataTrain)\ntype=c(\"C-classification\",\"nu-classification\")\nkernel=c(\"linear\",\"polynomial\",\"radial\",\"sigmoid\")\naccuracy=matrix(0,2,4)\nfor (i in 1:2)\n{\n  for ( j in 1:4) \n  {\n    model <- svm(x,y,type=type[i],kernel = kernel[j])\n    pred_temp=predict(model,x)\n    accuracy[i,j]=sum(pred_temp!=y)\n  }\n}\ndimnames(accuracy)=list(type,kernel)\naccuracy\nmodel_fitted <- svm(x[1:3100],y[1:3100],type=\"C-classification\",kernel = \"polynomial\")\npred <- predict(model_fitted,x[3101:6270])\ntable(pred,y)\ndataTest <- read.table(\"./竞赛实验数据2017/kddtest2017.txt\")\npred_test=predict(model_fitted,dataTest)\nwrite.xlsx(pred_test,\"predict_result.xlsx\",col.names = F,row.names = F)\n",
+    "created" : 1510704812508.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2269755591",
+    "id" : "D8B26208",
+    "lastKnownWriteTime" : 1510473988,
+    "last_content_update" : 1510473988,
+    "path" : "~/R codes/data_mining_task1/SVM.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

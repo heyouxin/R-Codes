@@ -1,0 +1,99 @@
+---
+output: 
+  pdf_document: 
+    keep_tex: yes
+    latex_engine: xelatex
+    includes:
+        in_header: header.tex
+---
+
+#**5.**
+
+##R code:
+
+```{r}
+library(ggplot2)
+norm_distribution<-function(num)
+{
+  rnorm(num,0,1)
+}
+
+chisq_distribution<-function(num)
+{
+  rchisq(num,12)
+}
+
+inverse_chisq_distribution<-function(num)
+{
+  1/(rchisq(num,12))
+}
+
+cauchy_distribution<-function(num)
+{
+  rcauchy(num)
+}
+
+x_bar_plot<-function(func)
+{
+  n<-seq(100,1000,100)
+  set.seed(520)
+  x<-sapply(n, func)
+  x_bar<-sapply(x, mean)
+  #print(paste0("mean of x_bar=",mean(x_bar)))
+  q<-qplot(n,x_bar)
+  q+scale_x_continuous(breaks = n)
+}
+```
+
+\newpage
+
+
+##(a)
+
+```{r}
+x_bar_plot(norm_distribution)
+```
+
+###conclusion:
+###1.x_bar围绕分布的期望EX=0.00波动。
+###2.x_bar与sample size 没有必然联系，并不存在sample size 越大,x_bar越接近于EX。同时可用n=1000,2000...10000验证。
+
+<br/>
+<br/>
+\newpage
+
+##(b)
+
+```{r}
+x_bar_plot(chisq_distribution)
+```
+
+###conclusion:
+###1.x_bar围绕分布的期望EX=12波动。
+###2.x_bar与sample size 没有必然联系，并不存在sample size 越大,x_bar越接近于EX。
+
+<br/>
+<br/>
+\newpage
+
+##(c)
+```{r}
+x_bar_plot(inverse_chisq_distribution)
+```
+
+###conclusion:
+###1.x_bar围绕0.1波动。
+###2.x_bar与sample size 没有必然联系，并不存在sample size 越大,x_bar越接近于0.1。
+
+<br/>
+<br/>
+\newpage
+
+##(d)
+```{r}
+x_bar_plot(cauchy_distribution)
+```
+
+###conclusion:
+###1.x_bar围绕0.00波动，大多数点波动范围非常小,近乎接近于0.00。但是个别点与0.00偏差很大。
+###2.x_bar与sample size 没有必然联系，并不存在sample size 越大,x_bar越接近于0.00。

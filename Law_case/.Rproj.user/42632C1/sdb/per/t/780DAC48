@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#rm(list=ls())\n#library(openxlsx)\nlibrary(xlsx)\nlibrary(stringr)\nlibrary(splitstackshape)\nfilename<-\"case_2.xlsx\"\nraw_data<-read.xlsx(filename,sheetName = 1,encoding = \"UTF-8\")\n\n#获取列名\ncol_name<-names(raw_data)\n\n#按“空格”符号分割表内数据\nfinal_data <-cSplit(raw_data,col_name[3],\"##\")\n#View(final_data)\nwrite.xlsx(final_data,\"law_case_2.xlsx\",row.names = F)\n#write.csv(final_data,\"law_case.csv\",row.names = F)\n#a111 <- read.xlsx(\"law_case.xlsx\",1,encoding = \"UTF-8\")\n#View(a111)\n",
+    "created" : 1497837537357.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3175790987",
+    "id" : "780DAC48",
+    "lastKnownWriteTime" : 1499832464,
+    "last_content_update" : 1499832464436,
+    "path" : "~/R codes/Law_case/split_defender.R",
+    "project_path" : "split_defender.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "dataTrain <- read.table(\"./竞赛实验数据2017/kddtrain2017.txt\")\nhead(dataTrain)\ny=as.character(dataTrain[,101])\ntypeof(y)\n\nView(dataTrain)\nlibrary(e1071)\nmodel1=svm(dataTrain[,-101],dataTrain[,101],type=\"one-classification\")\nmodel2=svm(dataTrain[,-101],dataTrain[,101],type=\"C-classification\",kernel = \"polynomial\")\n\nmodel1 <- svm(x[1:6000,],y[1:6000],type=\"C-classification\",kernel = \"polynomial\")\npred1 <- predict(model1,x[6001:6270,])\ntable(pred1,y[6001:6270])\n\na <- c(0,1,0)\nb <- c(1,0,0)\ntable(a,b)\n\ntable(pred,y)\n\nsummary(model1)\n\nnrow(dataTrain)\n\npred1=predict(model1,dataTrain[,-101])\npred2=predict(model2,dataTrain[,-101])\n\n\nhead(pred)\n\ntable(pred2,y)\n\n\n",
+    "created" : 1510408952302.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1698919193",
+    "id" : "33A07066",
+    "lastKnownWriteTime" : 1510474452,
+    "last_content_update" : 1510474452558,
+    "path" : "~/R codes/data_mining_task1/classify.R",
+    "project_path" : "classify.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

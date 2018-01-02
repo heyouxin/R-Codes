@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(caret)\nlibrary(e1071)\nlibrary(PerformanceAnalytics)\nlibrary(\"quantmod\")\nlibrary(\"zoo\")\n## 读文件，确定自变量和因变量\n\ndata_sample <- read.zoo(\"./data/hs300_5.csv\",sep=\",\",header=T,format = \"%Y-%m-%d\")\ndata_sample <- na.omit(data_sample)\n\nView(data_sample)\nchart.CumReturns(data_sa`data_samplemple[2641:2866,'ret_cur'],main='cumulative return')\n\nchartSeries(to.weekly(data_sample[2641:2866,c(1:5)]),theme = 'white',name='沪深300指数2017年月K线图',up.col = 'red',dn.col = 'green')\n\n\nfit <- lm(ret~open+close+high+low+volume+mv10+mv20+vol10+vol20+rsi5+rsi14+macd.macd1+signal.macd1+macd.macd2+signal.macd2+dn+mavg+up+pctB+ret_cur+ret_lag1+ret_lag2,data = data_sample)\nsummary(fit)\n\n\n\n\n#使用显著的变量作为X\nx <- data_sample[,c(1,3,19,23)]\nView(x)\ny <- data_sample[,20]\nView(y)\n\n#使用所有变量作为X\nx <- data_sample[,-c(20,21)]\nView(x)\ny <- data_sample[,20]\nView(y)\n\n\ninsams<- \"2005-01-01\"\ninsame<- \"2016-12-31\"\nosams<- \"2017-01-01\"\nosame<- \"2017-12-31\"\ninrow <- which(index(data_sample) >= insams & index(data_sample) <= insame)\noutrow <- which(index(data_sample) >= osams & index(data_sample) <= osame)\n\n\n## 计算SVM在2种分类机，4种核函数下模型的错误次数\ntype <- c(\"C-classification\",\"nu-classification\")\nkernel <- c(\"linear\",\"polynomial\",\"radial\",\"sigmoid\")\naccuracy <- matrix(0,2,4)\nfor (i in 1:2)\n{\n  for ( j in 1:4) \n  {\n    model <- svm(x[inrow,],y[inrow],type=type[i],kernel = kernel[j])\n    pred_temp <- predict(model,x[outrow])\n    accuracy[i,j] <- sum(pred_temp!=as.vector(y[outrow]))\n  }\n}\ndimnames(accuracy) <- list(type,kernel)\naccuracy\n\n\n## 由以上结果可知，使用SVM进行分类，type=\"C-classification\",kernel = \"polynomial\"的模型最优。\nmodel1 <- svm(x[inrow,],y[inrow],type=\"C-classification\",kernel = \"radial\")\npred1 <- predict(model1,x[outrow,])\n#table(pred1,y[outrow])\noutresult_out<- confusionMatrix(pred1,y[outrow])\noutresult_out\n\n\n\n# Performance\n\n\nsignal <- ifelse( pred1==1 | pred1==2,1,ifelse(pred1==-2 ,-1,0))\n#signal <- ifelse( pred1==1 | pred1==2 | pred1==1,1,0)\n#signal <- ifelse( pred1==1 | pred1==2,1,0)\nsimreturn <- data_sample$ret[outrow]\ncost <- 0\nstrategy_return <- Lag(simreturn)*Lag(signal)-cost\ncumm_return<- Return.cumulative(strategy_return)\nannual_return <- Return.annualized(strategy_return)\ncharts.PerformanceSummary(strategy_return)\n\n",
+    "created" : 1513585876677.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3261958971",
+    "id" : "8226A7A7",
+    "lastKnownWriteTime" : 1513669492,
+    "last_content_update" : 1513669492622,
+    "path" : "~/R codes/svmStrategy/源代码及数据/SVM_function.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

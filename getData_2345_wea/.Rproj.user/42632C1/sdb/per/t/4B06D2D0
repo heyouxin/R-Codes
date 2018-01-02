@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\nlibrary(rvest)\nurl1<-\"http://datacenter.mep.gov.cn/report/air_daily/air_dairy_aqi.jsp?city=&startdate=&enddate=&page=\"\n#url<-paste0(url1,1)\n#url\ntotal_data<-data.frame()\nfor(page in 1:12702)\n{\n  url<-paste0(url1,page)\n  web <- read_html(url,encoding = \"UTF-8\")\n  table_data<-html_table(html_nodes(web, \"#report1\"))\n  table_data2<-as.data.frame(table_data)\n  table_data2<-table_data2[-c(33:35),]\n  table_data2<-table_data2[-c(1:2),]\n  table_data2<-table_data2[,-c(1:2)]\n  total_data<-rbind(total_data,table_data2)\n  \n  \n  \n  \n}\nwrite.csv(total_data,\"envir_data_aqi.csv\",row.names = F)\n\n\n# web <- read_html(url1,encoding = \"UTF-8\")\n# table_data<-html_table(html_nodes(web, \"#report1\"))\n# table_data2<-as.data.frame(table_data)\n# table_data2<-table_data2[-c(33:35),]\n# table_data2<-table_data2[-c(1:2),]\n# table_data2<-table_data2[,-c(1:2)]\n# class(table_data2)\n# View(table_data2)\n# write.csv(table_data2,\"envir_data.csv\",row.names = F)\n",
+    "created" : 1488895026448.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3761017807",
+    "id" : "4B06D2D0",
+    "lastKnownWriteTime" : 1486703992,
+    "last_content_update" : 1486703992,
+    "path" : "~/R codes/environment_data/get_environmentData.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

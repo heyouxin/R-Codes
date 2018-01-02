@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "require(RSelenium)\nremDr <- remoteDriver(remoteServerAddr = \"localhost\" \n                      , port = 4444\n                      , browserName = \"firefox\"\n)\nremDr$open()\nremDr$getStatus()\nremDr$navigate(\"http://so.baiten.cn/results?q=pd%253A%2528%255B2011%2520to%25202015%255D%2529%2520and%2520pa%253A%2528%25u5965%25u7EF4%25u901A%25u4FE1%25u80A1%25u4EFD%25u6709%25u9650%25u516C%25u53F8%2529&type=14&s=0&law=2&v=l\")\n\n\nselServ <- RSelenium::startServer(args = c(\"-port 5556\"))\nremDr <- RSelenium::remoteDriver(extraCapabilities = list(marionette = TRUE), port=5556)\nremDr$open()",
+    "created" : 1481179958570.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2771422242",
+    "id" : "1BF91DEE",
+    "lastKnownWriteTime" : 1480689577,
+    "last_content_update" : 1480689577,
+    "path" : "~/R codes/getData_BaiTen/_______linkHtml.R",
+    "project_path" : "_______linkHtml.R",
+    "properties" : {
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

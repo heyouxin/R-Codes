@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\noutput: \n  pdf_document: \n    keep_tex: yes\n    latex_engine: xelatex\n    includes:\n        in_header: header.tex\n---\n\n## 经济系    何友鑫    15320161152320\n\n## R Code\n```{r include=FALSE}\nlibrary(xlsx)\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n```{r warning=FALSE}\nfilename <- dir(\"./Data/\")\n#删除隐藏文件\nfilename <- filename[-(1:6)]\nprice_plot <- function(flag=0,i)\n{\n  filepath <- paste0(\"./Data/\",filename[i])\n  if(flag==0)\n  {\n    #从第三部分开始读取文件，即28行开始\n    file <- read.xlsx(filepath,1,startRow = 28)\n  }\n  if(flag==1)\n  {\n    #问题3的第三部分数据是从33行开始\n    file <- read.xlsx(filepath,1,startRow = 33)\n  }\n  #tradeID=0,-1的行剔除 按tradeID升序排列\n  file <- filter(file,tradeID>0)\n  file <- file[order(file$tradeID),]\n  \n  group1 <- filter(file,Group==1)\n  #time_t <- c(1:nrow(group1))\n  title <- paste0(filename[i],\"_group1 price\")\n  plot1 <- ggplot(group1,aes(x=group1$tradeID,group1$price))+\n    geom_line(colour=\"green\")+\n    ggtitle(title)\n  print(plot1)\n \n  group2 <- filter(file,Group==2)\n  #time_t <- c(1:nrow(group2))\n  title <- paste0(filename[i],\"_group2 price\")\n  plot2 <- ggplot(group2,aes(x=group2$tradeID,group2$price))+\n    geom_line(colour=\"red\")+\n    ggtitle(title)\n  print(plot2)\n}\n```\n\n\n##Q1.第一场至第七场“可融资实验”第一轮\n\n```{r warning=FALSE,fig.width=3,fig.height=2}\nfor (i in 1:7) \n{\n  price_plot(0,i)\n}\n\n```\n\n\\newpage\n\n##Q2.第一场至第七场“不可融资实验”第一轮\n\n```{r warning=FALSE,fig.width=3,fig.height=2}\nfor (i in 27:33) \n{\n  price_plot(0,i)\n}\n\n```\n\n\\newpage\n\n##Q3.第一场至第七场“可融资实验”第四轮\n\n```{r warning=FALSE,fig.width=3,fig.height=2}\nfor (i in 22:26) \n{\n  price_plot(1,i)\n}\n\n```\n\n\\newpage\n\n##Q4.\n\n###1.相对于可融资实验，不可融资实验中游戏资产交易价格的波动幅度更小。\n###2.从交易价格的极端值来看，可融资交易出现了一次200元，四次50元，而不可融资交易相对应的是一次150元，一次60元，一次50元。\n\n##Q5.  \n  \n###第四轮交易手数多，交易更为频繁，价格波动快。\n\n##Q6.  \n  \n###1.共谋的方式：资产高价成交，把资金转移到一个人手里。  \n###2.防止合谋的方法：1）将每个交易者隔绝，禁止私下接触；2）每一场比赛每一轮重新分配每一组的交易对手。确保每一场交易中交易者都面临不同的交易对手。3）设置涨跌停。  \n\n##Q7. \n  \n###1.参与者面临的随机性不够。表现在12个交易对手确定为一个小组后，此后的几轮交易没有变更小组成员，而且一些小组成员互相认识，在同一个地方交易，提高了合谋的可能性。  \n###2.针对资产的最终价值的确定，随机数设置不合理，资产价值可能为0也可能很高。这增加了实验的投机性，并不利于探讨现实中投资者的面临不确定风险下的选择。建议提高资产价值的下限。  \n###3.最终收益率的确定应该看四轮交易的平均值而不是随机抽取一轮。否则会促使交易者进行更加非理性的决策。  \n \n##Q8.  \n  \n###无关。根据实验数据分析可得，initial money 与 final payoff 、return rate 无直接联系。\n\n##Q9.  \n\n\n\n###1.每轮的交易时间太短，有时市场很不活跃。\n###2.在实验中，作空更容易得到高收益。   \n###3.投资者易采取极端手段获取高收益，有存在高价（异常）价格成交的数据，说明在实验中存在 共谋。  \n###4.实验者参与者以咖啡卷为目的，不以盈利为目的，是非理性人。\n###5.资产真实价格的分布不太合理。\n",
+    "created" : 1492922581880.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3229951501",
+    "id" : "6BC9AE8F",
+    "lastKnownWriteTime" : 1493049910,
+    "last_content_update" : 1493049910835,
+    "path" : "~/R codes/EXCEL_OPERATION/finance_homework.Rmd",
+    "project_path" : "finance_homework.Rmd",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

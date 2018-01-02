@@ -1,0 +1,16 @@
+---
+title: "Data_mining_Cup 2017 "
+output: 
+  pdf_document: 
+    keep_tex: yes
+    latex_engine: xelatex
+    includes:
+        in_header: header.tex
+---
+
+## 中文
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+

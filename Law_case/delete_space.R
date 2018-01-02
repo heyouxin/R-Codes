@@ -1,0 +1,8 @@
+#url_data <- data.frame()
+#url_data <- read.xlsx("url_4.xlsx",1)
+url_data <- fread("url_4.csv",encoding = "UTF-8")
+#View(url_data)
+site <- as.character(url_data$website)
+library(dplyr)
+url_data2 = filter(url_data,site!='')
+write.csv(url_data2,"url_5.csv",row.names = F)

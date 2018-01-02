@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "####法律状态分为两部分搞，1部分是共有的4条记录，另一部分是申请号+授权公告号,做一次LEFT_JOIN\n####申请号不是唯一的，不能这样做。\n\n#rm(data_ch)\nlibrary(data.table)\ncon <- file(\"FLZT_2008-2016_1.txt\", \"r\")\ndata_ch <- readLines(con,n=-1,encoding = \"UTF-8\")\nclose(con)\nhead(data_ch)\n\n\ndata_get<-grep(\"<申请号>=.*\",data_ch)\nSQH <- data_ch[data_get]\nSQH2 <- gsub(\"<.*?>=\",\"\",SQH)\n\ndata_get<-grep(\"<法律状态公告日>=.*\",data_ch)\nFLZTGGR <- data_ch[data_get]\nFLZTGGR2 <- gsub(\"<.*?>=\",\"\",FLZTGGR)\n\n\ndata_get<-grep(\"<法律状态>=.*\",data_ch)\nFLZT <- data_ch[data_get]\nFLZT2 <- gsub(\"<.*?>=\",\"\",FLZT)\n\n\n\ndata_get<-grep(\"<法律状态信息>=.*\",data_ch)\nFLZTXX <- data_ch[data_get]\nFLZTXX2 <- gsub(\"<.*?>=\",\"\",FLZTXX)\n\n\n\n\n\nexcel_data1 <- data.table(\"申请号\"=SQH2,\"法律状态公告日\"=FLZTGGR2,\"法律状态\"=FLZT2,\"法律状态信息\"=FLZTXX2)\n#View(excel_data)\nwrite.csv(excel_data,\"FLZT_2008-2016_1_part1.csv\")\n\ndata_get<-grep(\"<授权公告号>=.*\",data_ch)\nSQGGH <- data_ch[data_get]\nSQGGH2 <- gsub(\"<.*?>=\",\"\",SQGGH)\n\nexcel_data2 <- data.table(\"申请号\"=SQH2,\"授权公告号\"=SQGGH2)\nwrite.csv(excel_data,\"FLZT_2008-2016_1_part2.csv\")\n\n\n",
+    "created" : 1482762152250.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2584123208",
+    "id" : "F8A1DC34",
+    "lastKnownWriteTime" : 1482822759,
+    "last_content_update" : 1482822759850,
+    "path" : "~/R codes/txt_To_excel/FLZT.R",
+    "project_path" : "FLZT.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

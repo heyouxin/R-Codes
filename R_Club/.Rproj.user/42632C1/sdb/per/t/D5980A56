@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "head(USArrests)\nsubstr(STATES,1,4)\nSTATES=rownames(USArrests)\nstate_chars <- nchar(STATES)\nstate_chars\nhist(state_chars)\nSTATES[grep(\"w\",STATES)]\nSTATES[grep(\"[Ww]\",STATES)]\nSTATES[grep(\"w\",STATES,ignore.case = T)]\nlibrary(stringr)\nstr_count(STATES,\"a\")\nvowels <- c(\"a\",\"e\",\"i\",\"o\",\"u\")\nstr_count(STATES,vowels)\ntest_vector<-c(\"a1\",\"33\",\"\\n\",\"4\")\ntest_vector\nstr_extract_all(test_vector,\"[4$]\")\nstr_extract_all(test_vector,\"\\n\")\n\n\n\n",
+    "created" : 1488589714959.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2525928533",
+    "id" : "D5980A56",
+    "lastKnownWriteTime" : 1488596376,
+    "last_content_update" : 1488596376470,
+    "path" : "~/R codes/R_Club/3_4 COURSE.R",
+    "project_path" : "3_4 COURSE.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(httr)\nlibrary(rvest)\nlibrary(RSelenium)\nlibrary(stringr)\nlibrary(xlsx)\nlibrary(data.table)\n\n\nopenHtml <- function(url,casename)\n{\n\n\n  remDr$navigate(url)\n  #remDr$refresh()\n  Case_data <- remDr$findElements(using = 'css selector', \"#divFullText\")\n  #webElem_totalcount <- remDr$findElement('xpath', \"//*[@id=\"divFullText\"]/text()[1]\")\n  Case_txt <- unlist(lapply(Case_data, function(x){x$getElementText()}))\n  \n  ##文本处理\n  str <- strsplit(Case_txt,\"原告\")\n  str2 <- str[[1]][2]\n  \n  useful_str <- strsplit(str2,\"\\n\")\n  #list 转 vector\n  useful_str2 = as.vector(unlist(useful_str[1]))\n  yuangao <- useful_str2[1]\n  yuangao2 <- gsub(\"原告\",\"\",yuangao)\n  yuangao2 <- gsub(\"。\",\"\",yuangao2)\n  yuangao2 <- gsub(\"：\",\"\",yuangao2)\n  yuangao2 <- gsub(\":\",\"\",yuangao2)\n  \n  beigao_pos <- grep(pattern = \"被告.*\",useful_str2)\n  beigao <- c()\n  for (i in 1:length(beigao_pos)) \n  {\n    beigao[i]=useful_str2[beigao_pos[i]]\n    \n  }\n  beigao2 <- gsub(\"被告\",\"\",beigao)\n  beigao2 <- gsub(\"。\",\"\",beigao2)\n  beigao2 <- gsub(\"：\",\"\",beigao2)\n  beigao2 <- gsub(\":\",\"\",beigao2)\n  beigao2 <- paste0(beigao2,collapse = \"##\")\n  data1 <- data.frame()\n  data1 <- data.frame(\"casename\"=casename,\"accuser\"=yuangao2,\"defender\"=beigao2)\n  return (data1)\n  \n  \n}\n\n\n\n##读URL\nurl_data <- data.frame()\n#url_data <- read.xlsx(\"url.xlsx\",1)\nurl_data <- fread(\"url_3.csv\",encoding = \"UTF-8\")\n#View(url_data)\nsite <- as.character(url_data$website)\nname <- url_data$case_name\n\n##抓取数据\nremDr <- remoteDriver(remoteServerAddr = \"localhost\" \n                      , port = 4444\n                      , browserName = \"chrome\"\n)\nremDr$open()\nremDr$navigate(site[1])\nSys.sleep(5)\nremDr$refresh()\n\n#remDr$navigate(site[24])\n#head(site)\n# remDr$refresh()\n# Case_data <- remDr$findElements(using = 'css selector', \"#divFullText\")\n# #webElem_totalcount <- remDr$findElement('xpath', \"//*[@id=\"divFullText\"]/text()[1]\")\n# Case_txt <- unlist(lapply(Case_data, function(x){x$getElementText()}))\n\ndata <- data.frame()\ni\nfor(i in 1681:length(site))\n{\n data <- rbind(data,openHtml(site[i],name[i]))\n  \n}\nwrite.xlsx(data,\"case_2.xlsx\",row.names = F)\n#View(data)\n#site[i]\n",
+    "created" : 1497764282359.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2428456352",
+    "id" : "183B983D",
+    "lastKnownWriteTime" : 1499832464,
+    "last_content_update" : 1499832464342,
+    "path" : "~/R codes/Law_case/main2.R",
+    "project_path" : "main2.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

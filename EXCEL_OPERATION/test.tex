@@ -1,0 +1,133 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{}
+  \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{ctex} 
+\setCJKmainfont{宋体}                     % 中文缺省字体，
+\setCJKsansfont{黑体}                      % 中文无衬线字体，   调用命令： \sffamily
+\setCJKmonofont{仿宋}     % 中文打字机（等宽）字体， 调用命令： \ttfamily
+
+%\usepackage{ctex} 
+%\setCJKmainfont{Adobe 宋体 Std}                     % 中文缺省字体，
+%\setCJKsansfont{Adobe 黑体 Std}                      % 中文无衬线字体，   调用命令： \sffamily
+%\setCJKmonofont{Adobe 仿宋 Std}     % 中文打字机（等宽）字体， 调用命令： \ttfamily
+
+\begin{document}
+
+\subsection{Q4.}\label{q4.}
+
+\subsubsection{1.相对于可融资实验，不可融资实验中游戏资产交易价格的波动幅度更小。}
+
+\subsubsection{2.从交易价格的极端值来看，可融资交易出现了一次200元，四次50元，而不可融资交易相对应的是一次150元，一次60元，一次50元。}\label{200501506050}
+
+\subsection{Q5.}\label{q5.}
+
+\subsubsection{第四轮交易手数多，交易更为频繁，价格波动快。}
+
+\subsection{Q6.}\label{q6.}
+
+\subsubsection{1.共谋的方式：资产高价成交，把资金转移到一个人手里。}
+
+\subsubsection{2.防止合谋的方法：1）将每个交易者隔绝，禁止私下接触；2）每一场比赛每一轮重新分配每一组的交易对手。确保每一场交易中交易者都面临不同的交易对手。3）设置涨跌停。}\label{123}
+
+\subsection{Q7.}\label{q7.}
+
+\subsubsection{1.参与者面临的随机性不够。表现在12个交易对手确定为一个小组后，此后的几轮交易没有变更小组成员，而且一些小组成员互相认识，在同一个地方交易，提高了合谋的可能性。}\label{12}
+
+\subsubsection{2.针对资产的最终价值的确定，随机数设置不合理，资产价值可能为0也可能很高。这增加了实验的投机性，并不利于探讨现实中投资者的面临不确定风险下的选择。建议提高资产价值的下限。}\label{0}
+
+\subsubsection{3.最终收益率的确定应该看四轮交易的平均值而不是随机抽取一轮。否则会促使交易者进行更加非理性的决策。}
+
+\subsection{Q8.}\label{q8.}
+
+\subsubsection{有关。无论哪一次哪一轮交易，group1中持有300元加30份资产的机构交易者的收益率的排名总是在最后三名。Group2中的机构交易者的收益率排名总是在前三名。并且group1中所有交易者的收益率高于group2中的所有交易者。}\label{group130030group2group1group2}
+
+\subsection{Q9.}\label{q9.}
+
+\subsubsection{1.每轮的交易时间太短，有时市场很不活跃。}
+
+\subsubsection{2.在实验中，作空更容易得到高收益。}
+
+\subsubsection{3.投资者易采取极端手段获取高收益，有存在高价（异常）价格成交的数据，说明在实验中存在
+共谋。}\label{-}
+
+\subsubsection{4.实验者参与者以咖啡卷为目的，不以盈利为目的，是非理性人。}
+
+\end{document}

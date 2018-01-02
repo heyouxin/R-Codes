@@ -1,0 +1,113 @@
+####################################
+# project name: getData_courDoc
+# author: hyx
+# date:2016.12.9-2016.12.
+# key words: web scrapy js R   RSelenium
+# version: v1.0.0
+# ####################################
+# Questions&next version:
+# ####Q1: next page
+# ####Q2: executeJavaScript
+
+######################################
+
+
+
+###rm(list=ls())
+###ctrl+shift+c段落注释
+
+#library(JQuery)
+library(httr)
+library(rvest)
+library(RSelenium)
+
+site <- "http://wenshu.court.gov.cn/list/list/?sorttype=1&conditions=searchWord+002005002+AY++%E6%A1%88%E7%94%B1:%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E6%9D%83%E5%B1%9E%E3%80%81%E4%BE%B5%E6%9D%83%E7%BA%A0%E7%BA%B7&conditions=searchWord+all_%E4%B8%80%E5%AE%A1+SPCX++%E5%AE%A1%E5%88%A4%E7%A8%8B%E5%BA%8F:%E4%B8%80%E5%AE%A1&conditions=searchWord+2014+++%E8%A3%81%E5%88%A4%E5%B9%B4%E4%BB%BD:2014&conditions=searchWord+%E5%88%A4%E5%86%B3%E4%B9%A6+++%E6%96%87%E4%B9%A6%E7%B1%BB%E5%9E%8B:%E5%88%A4%E5%86%B3%E4%B9%A6"
+remDr <- remoteDriver(remoteServerAddr = "localhost" 
+                      , port = 4444
+                      , browserName = "chrome"
+)
+remDr$open()
+#remDr$setWindowSize()
+#tryCatch(remDr$navigate(site))
+remDr$navigate(site)
+data <- data.frame()
+for(i in 1:2796)
+ {
+   ####20 records
+   #webElem_btn <- remDr$findElement(using = 'css selector', "#pageNumber > div:nth-child(9) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2)")
+   #webElem_btn$clickElement() 
+   #webElem_page20 <- remDr$findElement('xpath', "//li[@id = '16_input_20']")
+   #webElem_page20$clickElement() 
+   ####
+   webElems_title <- remDr$findElements(using = 'css selector', "div.wstitle")
+   doc_title <- unlist(lapply(webElems_title, function(x){x$getElementText()}))
+   #doc_url <- unlist(lapply(webElems, function(x){x$getElementAttribute("href")}))
+   #print(resHeaders)
+   #webElems <- remDr$findElements(value = "//tbody//tr//td//div//a")  
+
+   webElems_num <- remDr$findElements(using = 'css selector', "div.fymc")
+   doc_num <- unlist(lapply(webElems_num, function(x){x$getElementText()}))
+   
+   
+   webElems_url <- remDr$findElements(using = 'css selector', "td:nth-child(1) > div:nth-child(1) > a:nth-child(3)")
+   doc_url <- unlist(lapply(webElems_url, function(x){x$getElementAttribute("href")}))
+   #print(doc_url)
+   #title_url <- data.frame(resHeaders,doc_url)
+   while ((is.null(doc_title)) | (is.null(doc_url)))
+   {
+    #remDr$refresh()
+     Sys.sleep(10)
+     webElems_title <- remDr$findElements(using = 'css selector', "div.wstitle")
+     doc_title <- unlist(lapply(webElems_title, function(x){x$getElementText()}))
+     #doc_url <- unlist(lapply(webElems, function(x){x$getElementAttribute("href")}))
+     #print(resHeaders)
+     #webElems <- remDr$findElements(value = "//tbody//tr//td//div//a")  
+     
+     webElems_num <- remDr$findElements(using = 'css selector', "div.fymc")
+     doc_num <- unlist(lapply(webElems_num, function(x){x$getElementText()}))
+     
+     
+     webElems_url <- remDr$findElements(using = 'css selector', "td:nth-child(1) > div:nth-child(1) > a:nth-child(3)")
+     doc_url <- unlist(lapply(webElems_url, function(x){x$getElementAttribute("href")}))
+     
+    #    #print(111111)
+    #    webElems_title <- remDr$findElements(using = 'css selector', "div.wstitle")
+    #    resHeaders <- unlist(lapply(webElems_title, function(x){x$getElementText()}))
+    #    #doc_url <- unlist(lapply(webElems, function(x){x$getElementAttribute("href")}))
+    #    #print(resHeaders)
+    #    webElems <- remDr$findElements(value = "//tbody//tr//td//div//a")  
+    #    webElems_url <- remDr$findElements(using = 'css selector', "td:nth-child(1) > div:nth-child(1) > a:nth-child(3)")
+    #    doc_url <- unlist(lapply(webElems_url, function(x){x$getElementAttribute("href")}))
+    #    #print(doc_url)
+    #    #title_url2 <- data.frame(resHeaders,doc_url)
+    #    
+    #    #remDr$setTimeout(10000)
+    #  
+   }
+   title_num_url <- data.frame(doc_title,doc_num,doc_url)
+   data <- rbind(data,title_num_url)
+   #print(data)
+   webElem_nextPage <- remDr$findElement(using = 'css selector', "a.next")
+   # print(111).next
+   webElem_nextPage$clickElement()
+   Sys.sleep(3)
+
+   #url_get <- rbind(url_get,title_url)
+  #  script <- "return document.getElementById('hplogo').hidden;"
+  #  remDr$executeScript(script, args = list())
+  # #data <- rbind(data,getURL())
+# 
+  #  script1 <-  "http://wenshu.court.gov.cn/Assets/js/libs/js/nav/pageNumber.js:171"
+  #  script2 <-  "http://wenshu.court.gov.cn/Assets/js/dist/libs/jquery-1.9.0.min.js:2"
+  # remDr$executeScript(script1, args = list())
+  #  remDr$executeScript(script2, args = list())
+}
+# webElems_title_last <- remDr$findElements(using = 'css selector', "div.wstitle")
+# doc_title_last <- unlist(lapply(webElems_title_last, function(x){x$getElementText()}))
+# webElems_url_last <- remDr$findElements(using = 'css selector', "td:nth-child(1) > div:nth-child(1) > a:nth-child(3)")
+# doc_url_last <- unlist(lapply(webElems_url_last, function(x){x$getElementAttribute("href")}))
+# data_last <- data.frame(resHeaders_last,doc_url_last)
+# data <- rbind(data,data_last)
+#data
+write.csv(data,"title_url2.csv")
+

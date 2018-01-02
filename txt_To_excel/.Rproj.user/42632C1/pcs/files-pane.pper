@@ -1,0 +1,9 @@
+{
+    "path" : "~/txt_To_excel",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "func<-function(x) -exp(x)+exp(-x)\nplot(func,0,10)\n",
+    "created" : 1475675435972.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2205468217",
+    "id" : "73673CCE",
+    "lastKnownWriteTime" : 1475674756,
+    "last_content_update" : 1475674756,
+    "path" : "~/DAY 4/sour.R",
+    "project_path" : "sour.R",
+    "properties" : {
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

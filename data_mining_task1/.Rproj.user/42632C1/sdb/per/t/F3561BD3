@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(e1071)\nlibrary(xlsx)\n\ndataTrain <- read.table(\"./竞赛实验数据2017/kddtrain2017.txt\")\nx <- dataTrain[,-101]\ny <- dataTrain[,101]\nwts <- as.vector(cor(x,y)/sum(cor(x,y)))\nname_wts <- as.vector(paste0(\"V\",1:100))\n\nnames(wts) <- name_wts\n#nrow(dataTrain)\n#summary(dataTrain)\ntype=c(\"C-classification\",\"nu-classification\")\nkernel=c(\"linear\",\"polynomial\",\"radial\",\"sigmoid\")\naccuracy=matrix(0,2,4)\nfor (i in 1:2)\n{\n  for ( j in 1:4) \n  {\n    model <- svm(x,y,type=type[i],kernel = kernel[j])\n    pred_temp=predict(model,x)\n    accuracy[i,j]=sum(pred_temp!=y)\n  }\n}\ndimnames(accuracy)=list(type,kernel)\naccuracy\nmodel_fitted <- svm(x[1:5000,],y[1:5000],type=\"C-classification\",kernel = \"polynomial\")\n\nmodel_fitted <- svm(x,y,class.weights = wts)\n\n\npred <- predict(model_fitted,x)\ntable(pred,y)\ndataTest <- read.table(\"./竞赛实验数据2017/kddtest2017.txt\")\npred_test=predict(model_fitted,dataTest)\nwrite.xlsx(pred_test,\"predict_result.xlsx\",col.names = F,row.names = F)\n",
+    "created" : 1510459705329.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2866102041",
+    "id" : "F3561BD3",
+    "lastKnownWriteTime" : 1510709673,
+    "last_content_update" : 1510709673975,
+    "path" : "~/R codes/data_mining_task1/SVM.R",
+    "project_path" : "SVM.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
