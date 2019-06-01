@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(ISLR)\nfuc_plot <- function(color=\"black\",type='b',isplot=FALSE)\n{\n  rows <- nrow (Auto)    \n  indexes <- sample (rows, 196, replace =FALSE)   \n  Auto2 <- Auto [indexes, ]    \n  mpg <- Auto2$mpg\n  horsepower <-  Auto2$horsepower\n  data <- data.frame(mpg,horsepower,horsepower^2,horsepower^3,horsepower^4,horsepower^5,horsepower^6,horsepower^7,horsepower^8,horsepower^9,horsepower^10)\n  #View(data)\n  formu <- \"mpg~horsepower\"\n  MSE <- c()\n  for (i in 1:10) \n  {\n    if (i==1)\n    {\n      formu <- paste0(formu)\n      \n    }\n    else\n      formu <- paste0(formu,\"+\",\"horsepower.\",i)\n    fit <- lm(formu,data=data)\n    MSE <- c(MSE,sum(residuals(fit)^2)/fit$df.residual)\n\n    #print(summary(lm(formu,data=data)))\n    \n  }\n  if(isplot==TRUE)\n  { \n    plot(1:10,MSE,type = type,col=color,xlab = \"ploy_num\")\n  }\n  else\n    lines(MSE,col=color)\n \n}\nfuc_plot(isplot = TRUE)\ncolors=c(\"green\",\"red\",\"blue\",\"yellow\")\nfor (i in 1:length(colors)) \n{\n  if(i==1)\n    fuc_plot(isplot = TRUE,type='l',color = colors[i])\n  else\n    fuc_plot(isplot = FALSE,type='l',color = colors[i])\n}\n\n\n",
+    "created" : 1521617634211.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1294589510",
+    "id" : "DD619A64",
+    "lastKnownWriteTime" : 1521622911,
+    "last_content_update" : 1521622911020,
+    "path" : "~/R Codes/data_mining_problem/quiz3.R",
+    "project_path" : "quiz3.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,214 @@
+library(ggplot2)
+set.seed(123)
+x <- rnorm(100,2,2)
+e <- rnorm(100,0,1)
+y <- 2+3*x+e
+library(ggplot2)
+qplot(x,y)
+reg <- lm(y~x)
+summary(reg)
+abline(reg, lwd=4, col="red")
+reg <- lm(y~x)
+abline(reg, lwd=4, col="red")
+abline(lm(y~x), lwd=4, col="red")
+plot1 <- plot(x,y)
+abline(lm(y~x), lwd=4, col="red")
+y_true <- 2+3*x
+abline(y_true,lwd=4,col="blue")
+abline(2+3*x,lwd=4,col="blue")
+abline(y_~x,lwd=4,col="blue")
+plot1 <- plot(x,y)
+abline(lm(y~x), lwd=4, col="red")
+abline(y_~x,lwd=4,col="blue")
+abline(y_~x,lwd=4,col="black")
+y_ <- 2+3*x
+abline(y_~x,lwd=4,col="blue")
+abline(y_~x,lwd=4,col="blue")
+plot1 <- plot(x,y)
+abline(lm(y~x), lwd=4, col="red")
+abline(y_~x,lwd=4,col="blue")
+abline(lm(y_~x),lwd=4,col="blue")
+abline(lm(y~x), lwd=4, col="red")
+abline(lm(y~x), lwd=4, col="red")
+abline(lm(y_~x),lwd=4,col="blue")
+abline(lm(y~x), lwd=4, col="red")
+reg <- lm(y_~x)
+summary(reg)
+reg <- lm(y~x)
+reg <- lm(y~x)
+summary(reg)
+reg$coefficients
+reg$coefficients[1]
+for (i in 1:1000)
+{
+x <- rnorm(100,2,2)
+e <- rnorm(100,0,1)
+y <- 2+3*x+e
+reg <- lm(y~x)
+cof_1 <- c(cof_1,reg$coefficients[1])
+cof_2 <- c(cof_2,reg$coefficients[2])
+}
+mean(cof_1)
+mean(cof_2)
+median(cof_1)
+median(cof_2)
+cof_1 <- c()
+cof_2 <- c()
+for (i in 1:1000)
+{
+x <- rnorm(100,2,2)
+e <- rnorm(100,0,1)
+y <- 2+3*x+e
+reg <- lm(y~x)
+cof_1 <- c(cof_1,reg$coefficients[1])
+cof_2 <- c(cof_2,reg$coefficients[2])
+}
+mean(cof_1)
+mean(cof_2)
+median(cof_1)
+median(cof_2)
+boxplot(cof_1)
+boxplot(cof_2)
+boxplot(cof_1)
+boxplot(cof_1,cof_2)
+x1 <- rnorm(100,1,sqrt(2))
+x2 <- rnorm(100,1,sqrt(2))
+e <- rnorm(100,0,sqrt(2))
+Y <- 2+3*x1+1.5*x2+e
+plot(x1,Y)
+plot(x2,Y)
+lm_fit <- lm(Y~x1+x2)
+summary(lm_fit)
+lm_fit$coefficients[1]
+coef1 <- c()
+coef2 <- c()
+coef3 <- c()
+fun1 <- function()
+{
+x1 <- rnorm(100,1,sqrt(2))
+x2 <- rnorm(100,1,sqrt(2))
+e <- rnorm(100,0,sqrt(2))
+Y <- 2+3*x1+1.5*x2+e
+lm_fit <- lm(Y~x1+x2)
+return(lm_fit$coefficients)
+}
+for (i in 1:1000) {
+cof_1 <- c(cof_1,fun1[1])
+cof_2 <- c(cof_2,fun1[2])
+cof_3 <- c(cof_3,fun1[3])
+}
+fun1
+cof <- fun1
+cof <- fun1
+cof_1 <- c(cof_1,cof[1])
+cof
+fun1 <- function()
+{
+x1 <- rnorm(100,1,sqrt(2))
+x2 <- rnorm(100,1,sqrt(2))
+e <- rnorm(100,0,sqrt(2))
+Y <- 2+3*x1+1.5*x2+e
+lm_fit <- lm(Y~x1+x2)
+return(lm_fit$coefficients)
+}
+cof <- fun1
+cof
+cof <- fun1()
+cof
+library(MASS)
+sigma <- matrix(c(2,1,1,2),nrow=2,ncol=2)
+mean <- c(1,1)
+sigma <- matrix(c(2,1,1,2),nrow=2,ncol=2)
+data <- mvrnorm(100,mean,sigma)
+data
+data[1]
+data[,1]
+.libPaths()
+data <- read.csv("C:/Users/heyouxin/Documents/PythonCodes/credit_rating/test-2.csv")
+View(data)
+data[,-1]
+View(data[,-c(1,length(data)])
+View(data[,-c(1,length(data))])
+data2 <- data[,-c(1,length(data))]
+logit_fit <- glm(data2$default~)
+logit_fit <- glm(data2$default)
+logit_fit <- glm(data2$default~.)
+logit_fit <- glm(data2$default~data2$.)
+logistreg <- paste0("default ~ .",sep="")
+logistreg
+model <- glm(logistreg,family="binomial",data2)
+model <- glm(logistreg,,data2)
+model
+model <- glm(data2$default~data2$cfoa_mean)
+model
+model <- glm(logistreg,data=data2)
+View(data2)
+model <- glm(logistreg,data=na.omit(data2))
+logistreg
+logistreg <- paste0("default ~ mom2",sep="")
+model <- glm(logistreg,data=data2)
+model
+logistreg <- paste0("default ~ mom2+mom3",sep="")
+model <- glm(logistreg,data=data2)
+model
+model <- glm(logistreg,data=data2)
+logistreg <- paste0("default ~ .",sep="")
+model <- glm(logistreg,data=data2)
+logistreg <- paste0("default ~.",sep="")
+model <- glm(logistreg,data=data2)
+model <- lm(logistreg,data=data2)
+model <- glm(logistreg,data=data2)
+data3 <- data2[,c(1,2)]
+data3
+model <- glm(logistreg,data=data3)
+model
+data3 <- data2[,c(1:5)]
+model <- glm(logistreg,data=data3)
+data3 <- data2[,c(1:4)]
+model <- glm(logistreg,data=data3)
+data3 <- data2[,c(1:5)]
+model <- glm(logistreg,data=data3)
+data3 <- data2[,c(1:4,6)]
+model <- glm(logistreg,data=data3)
+data3 <- data2[,c(-5)]
+model <- glm(logistreg,data=data3)
+data3 <- data2[,c(1:4,6:9)]
+model <- glm(logistreg,data=data3)
+model
+model <- glm(logistreg,data=data2)
+model <- glm(logistreg,data=as.numeric(data2))
+as.numeric(data2)
+model <- glm(logistreg,data=as.double(data2))
+data2
+data2[which(is.nan(data2))] = NA
+data2[which(data2==Inf)] = NA
+model <- glm(logistreg,data=data2)
+model
+summary(model)
+pred <- predict(model,data2)
+prob <- 1 / (1+exp(-(pred)))
+par(mfrow=c(2,1))
+plot(pred,type="l")
+plot(prob,type="l")
+pred_default<- NULL
+pred_default[prob> 0.5] <- 1
+pred_default[prob<= 0.5] <- 0
+library(caret)
+result_com<- confusionMatrix(pred_default,data2$default)
+result_com
+result_com
+pred_default
+data <- read.csv("C:/Users/heyouxin/Documents/PythonCodes/credit_rating/test-2.csv")
+data2 <- data[,-c(1,length(data))]
+logistreg <- paste0("default ~.",sep="")
+data2[which(data2==Inf)] = NA
+model <- glm(logistreg,data=data2)
+data2==Inf
+which(data2==Inf)
+data2[which(data2==Inf)]
+data2[which(data2==Inf),] = NA
+data2[which(is.nan(data2)),] = NA
+model <- glm(logistreg,data=data2)
+data2[which(is.nan(data2)),] = NA
+data2 <- data[,-c(1,length(data))]
+data2[which(is.nan(data2)),] = NA

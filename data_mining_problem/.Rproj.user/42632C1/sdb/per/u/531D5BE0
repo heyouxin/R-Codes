@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(ISLR)\n#View(Hitters)\nlibrary(tree)\nattach(Hitters)\ntree_Hitter <- tree(Salary~Years+Hits+RBI)\nsummary(tree_Hitter)\nplot(tree_Hitter)\ntext(tree_Hitter)\n\ncv_Hitter <- cv.tree(tree_Hitter,FUN=prune.misclass)\n",
+    "created" : 1524917666287.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "822781897",
+    "id" : "531D5BE0",
+    "lastKnownWriteTime" : 5,
+    "last_content_update" : 1525242528930,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 14,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

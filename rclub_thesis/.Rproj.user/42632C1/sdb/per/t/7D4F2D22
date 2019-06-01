@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(xlsx)\nlibrary(reshape2)\n#data1 <- read.csv(\"data1.csv\")\ndata <- read.xlsx(\"数据筛选.xlsx\",1,encoding = \"UTF-8\")\n#data2 <- stack(data1[,5:26])\ndata1 <- data[,c(1,2,3,4,seq(5,26,2))][,-15]\ndata2 <- data[,c(1,2,3,4,seq(6,26,2))][,-15]\ncolnames(data1)[5:14] <- c(1:10)\ncolnames(data2)[5:14] <- c(1:10)\ndata1 <- melt(data1,id.vars = c(\"No\",\"Treated\",\"classify\",\"edu\"),variable.name = \"Time\",value.name = \"Stock_con\")\ndata2 <- melt(data2,id.vars = c(\"No\",\"Treated\",\"classify\",\"edu\"),variable.name = \"Time\",value.name = \"Trade_exp\")\n\ndata_all <- merge(data1,data2)\n\ndata_all[,'Year'] <- 0\ndata_all[as.integer(data_all[,'Time'])>5,'Year'] <- 1\n\n\n\ndata <- read.xlsx(\"数据筛选.xlsx\",2,encoding = \"UTF-8\")\n#data2 <- stack(data1[,5:26])\ndata1 <- data[,c(1,2,3,4,seq(5,26,2))][,-15]\ndata2 <- data[,c(1,2,3,4,seq(6,26,2))][,-15]\ncolnames(data1)[5:14] <- c(1:10)\ncolnames(data2)[5:14] <- c(1:10)\ndata1 <- melt(data1,id.vars = c(\"No\",\"Treated\",\"classify\",\"edu\"),variable.name = \"Time\",value.name = \"Stock_con\")\ndata2 <- melt(data2,id.vars = c(\"No\",\"Treated\",\"classify\",\"edu\"),variable.name = \"Time\",value.name = \"Trade_exp\")\n\ndata_all_2 <- merge(data1,data2)\n\ndata_all_2[,'Year'] <- 0\ndata_all_2[as.integer(data_all_2[,'Time'])>5,'Year'] <- 1\n\ndata_all <- rbind(data_all,data_all_2)\n\nwrite.xlsx(data_all,\"data_reg_DID.xlsx\")\n\n\ndata <- read.xlsx(\"数据筛选.xlsx\",3,encoding = \"UTF-8\")\ndata1 <- data[,c(1,2,3,seq(4,23,2))]\ndata2 <- data[,c(1,2,3,seq(5,23,2))]\ncolnames(data1)[4:13] <- c(1:10)\ncolnames(data2)[4:13] <- c(1:10)\ndata1 <- melt(data1,id.vars = c(\"No\",\"Treated\",\"classify\"),variable.name = \"Time\",value.name = \"WBBL\")\ndata2 <- melt(data2,id.vars = c(\"No\",\"Treated\",\"classify\"),variable.name = \"Time\",value.name = \"Trade_exp\")\n\ndata_all_3 <- merge(data1,data2)\n\ndata_all_3[,'Year'] <- 0\ndata_all_3[as.integer(data_all_3[,'Time'])>5,'Year'] <- 1\n\ndata_all_panal <- merge(data_all_2,data_all_3)\nwrite.xlsx(data_all_panal,\"data_reg_panal.xlsx\")\n\n",
+    "created" : 1533129131530.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3583655895",
+    "id" : "7D4F2D22",
+    "lastKnownWriteTime" : 1533902843,
+    "last_content_update" : 1533902843249,
+    "path" : "~/R Codes/rclub_thesis/data_melt.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

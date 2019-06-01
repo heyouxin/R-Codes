@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1519628965052.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "32578E8A",
+    "lastKnownWriteTime" : 12948278431776869,
+    "last_content_update" : 1519628965052,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "ioutce8rq3",
+        "caption" : "hs300_weights",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=hs300_weights&cache_key=ioutce8rq3",
+        "displayedObservations" : "300",
+        "environment" : "",
+        "object" : "hs300_weights",
+        "totalObservations" : "300",
+        "variables" : "10"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

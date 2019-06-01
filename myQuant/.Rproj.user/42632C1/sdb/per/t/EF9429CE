@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "data <- read.csv(\"C:/Users/heyouxin/Documents/PythonCodes/credit_rating/test-2.csv\")\nView(data)\ndata2 <- data[,-c(1,length(data))]\nView(data2)\n#logit_fit <- glm(data2$default~.)\nlogistreg <- paste0(\"default ~.\",sep=\"\")\n\ndata2[which(is.nan(data2))] = NA\ndata2[which(data2==Inf)] = NA\n\nmodel <- glm(logistreg,data=data2)\nsummary(model)\n\npred <- predict(model,data2)\nprob <- 1 / (1+exp(-(pred)))\npar(mfrow=c(2,1))\nplot(pred,type=\"l\")\nplot(prob,type=\"l\")\n\npred_default<- NULL\npred_default[prob> 0.5] <- 1\npred_default[prob<= 0.5] <- 0\n\nlibrary(caret)\nresult_com<- confusionMatrix(pred_default,data2$default)\nresult_com\n",
+    "created" : 1521203060066.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2857039046",
+    "id" : "EF9429CE",
+    "lastKnownWriteTime" : 1521102068,
+    "last_content_update" : 1521102068,
+    "path" : "~/R Codes/data_mining_problem/logistic_regression.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

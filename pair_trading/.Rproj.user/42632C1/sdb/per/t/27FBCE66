@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521357352747.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "27FBCE66",
+    "lastKnownWriteTime" : 16888636046901320,
+    "last_content_update" : 1521357352747,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "9kwh2aqbu2",
+        "caption" : "bond_HQ",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=bond_HQ&cache_key=9kwh2aqbu2",
+        "displayedObservations" : "943",
+        "environment" : "",
+        "object" : "bond_HQ",
+        "totalObservations" : "943",
+        "variables" : "6"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

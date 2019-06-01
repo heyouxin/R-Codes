@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"midterm\"\noutput: pdf_document\n---\n\n### 总成绩汇总\n\n```{r}\nlibrary(xlsx)\nlibrary(ggplot2)\nscores <- read.xlsx(\"成绩汇总最终版.xlsx\",1,encoding = \"UTF-8\",stringsAsFactors=FALSE)\n#View(scores)\nattach(scores)\nscores$成绩 <- as.integer(scores$成绩)\nggplot(scores,aes(x=成绩))+\n  geom_histogram(binwidth = 10,fill=\"lightblue\",color=\"black\")\n\nboxplot(scores$成绩)\n\nmean(scores$成绩)\nmedian(scores$成绩)\nmax(scores$成绩)\nmin(scores$成绩)\n```\n\n\n### 3班成绩汇总\n\n```{R}\nscores_3 <- scores[scores$班级==3,]\nattach(scores_3)\nscores_3$成绩 <- as.integer(scores_3$成绩)\nggplot(scores_3,aes(x=成绩))+\n  geom_histogram(binwidth = 10,fill=\"lightblue\",color=\"black\")\n\nboxplot(scores_3$成绩)\n\nmean(scores_3$成绩)\nmedian(scores_3$成绩)\nmax(scores_3$成绩)\nmin(scores_3$成绩)\nwrite.csv(scores_3,\"class3.csv\")\n```\n",
+    "created" : 1525425022363.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3919207501",
+    "id" : "B628BB9A",
+    "lastKnownWriteTime" : 1525432948,
+    "last_content_update" : 1525432948668,
+    "path" : "~/R Codes/data_mining_problem/midterm.Rmd",
+    "project_path" : "midterm.Rmd",
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 21,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

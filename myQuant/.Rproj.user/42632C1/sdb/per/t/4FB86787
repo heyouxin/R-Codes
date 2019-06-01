@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list =ls() )\nsource(\"strategy_function.R\")\nlibrary(WindR)\nw.start()\n#w.stop()\nA_stock <- read.table(\"A_stock.txt\",stringsAsFactors =  F)\nA_stock <- as.character(A_stock)\n\nstockID <- getBasicFinance(A_stock)\n\ndate_from <- \"2017-12-01\"\ndate_to <- \"2018-01-02\"\nw_wset_data<-w.wset('tradesuspend','startdate=2017-12-01;enddate=2018-01-02')\nstock_stop <- w_wset_data$Data[,'wind_code']\n##去除停牌的股票\nstockID <- setdiff(stockID,stock_stop)\nstockID <- unique(stockID)\n\n#length(stockID)\nMACD_data <- data.frame()\nDEA_data <- data.frame()\nprice_close <- data.frame()\nfor (i in 1:5) \n{\n  HQ_temp <- getHQ(stockID[((i-1)*50+1):(i*50)],date_from,date_to)\n  MACD_temp <- HQ_temp[[1]]\n  DEA_temp <- HQ_temp[[2]]\n  price_temp <- HQ_temp[[3]]\n  if(i==1)\n  {\n    MACD_data <- MACD_temp\n    DEA_data <- DEA_temp\n    price_close <- price_temp\n  }\n  MACD_data <- cbind(MACD_data,MACD_temp)\n  DEA_data <- cbind(DEA_data,DEA_temp)\n  price_close <- cbind(price_close,price_temp)\n  \n}\n\n\nHQ_temp <- getHQ(stockID[251:length(stockID)],date_from,date_to)\nMACD_temp <- HQ_temp[[1]]\nDEA_temp <- HQ_temp[[2]]\nprice_temp <- HQ_temp[[3]]\n\nMACD_data <- cbind(MACD_data,MACD_temp)\nDEA_data <- cbind(DEA_data,DEA_temp)\nprice_close <- cbind(price_close,price_temp)\n  \n\n\n\nstock_DEA <- upByDEA(DEA_data,price_close)\n\n\n\n\n##找出需要卖出的股票\n\nstock_long <- stock_DEA\nMinHQ <- getMinHQ(stock_long)\n\nMinHQ_2 <- unstack(MinHQ,close~windcode)\nstock_short <- downByMinHQ(MinHQ_2)\n\n\n",
+    "created" : 1514884427755.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1312135199",
+    "id" : "4FB86787",
+    "lastKnownWriteTime" : 1514886071,
+    "last_content_update" : 1514886071041,
+    "path" : "~/R Codes/myQuant/strategy_main.R",
+    "project_path" : "strategy_main.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

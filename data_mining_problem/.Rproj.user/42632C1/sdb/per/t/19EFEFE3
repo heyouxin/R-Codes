@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"hw1\"\noutput: html_document\n---\n\n### 何友鑫 15320161152320\n\n#### 13.\n```{r}\n#set.seed(123)\nX <- rnorm(100,0,1)\ne <- rnorm(100,0,0.5)\nY <- -1+0.5*X+e\nlength(Y)\nfit <- lm(Y~X)\nsummary(fit)\nplot(X,Y)\npredict(fit)\nX_2 <- X*X\nfit2 <- lm(Y~X+X_2)\nsummary(fit2)\nabline(fit, lwd=1, col=\"red\")\nabline(fit2,lwd=1,col=\"blue\")\n\n```\n\n#### 15.\n\n```{r}\nlibrary(MASS)\n#par(mfrow=c(2,1))\ncof <- c()\nfor (c in 2:ncol(Boston)) {\n  Y <- Boston[,1]\n  X <- Boston[,c]\n  plot(X,Y,xlab=colnames(Boston)[c],ylab=colnames(Boston)[1])\n  abline(lm(Y~X))\n  fit_1 <- lm(Y~X)\n  cof <- c(cof,fit_1$coefficients[2])\n}\nreg <- paste0(\"crim ~.\",sep=\"\")\nfit <- lm(reg,data=Boston)\nsummary(fit)\n```\n```{r}\npar(mfrow=c(1,1))\nplot(cof,fit$coefficients[-1])\n```\n\n\n```{r}\nfor (c in 2:ncol(Boston)) {\n  Y <- Boston[,1]\n  X <- Boston[,c]\n  X_2 <- X^2\n  X_3 <- X^3\n  fit <- lm(Y~X+X_2+X_3)\n  print(summary(fit))\n}\n```",
+    "created" : 1521419619581.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3539807827",
+    "id" : "19EFEFE3",
+    "lastKnownWriteTime" : 1521425229,
+    "last_content_update" : 1521425229539,
+    "path" : "~/R Codes/data_mining_problem/hw1.Rmd",
+    "project_path" : "hw1.Rmd",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

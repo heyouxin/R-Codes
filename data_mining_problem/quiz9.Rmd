@@ -1,0 +1,17 @@
+---
+title: "quiz9"
+output: html_document
+---
+### 何友鑫 15320161152320
+```{r}
+
+library(ISLR)
+#View(Hitters)
+library(tree)
+attach(Hitters)
+tree_Hitter <- tree(Salary~Years+Hits+RBI)
+summary(tree_Hitter)
+plot(tree_Hitter)
+text(tree_Hitter)
+
+```

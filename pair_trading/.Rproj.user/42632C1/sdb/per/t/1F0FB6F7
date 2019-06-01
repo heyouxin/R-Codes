@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(xlsx)\nlibrary(quantmod)\n\nbond_HQ <- read.xlsx(\"三只违约债券历史行情.xls\",1,encoding = \"UTF-8\")\n\nbond_112087 <- bond_HQ[bond_HQ$债券代码_BdCd=='112087',]\nbond_112087 <- xts(bond_112087[,-c(1:3)],order.by = as.Date(bond_112087$交易日期_TrdDt))\n\nbond_112072 <- bond_HQ[bond_HQ$债券代码_BdCd=='112072',]\nbond_112072 <- xts(bond_112072[,-c(1:3)],order.by = as.Date(bond_112072$交易日期_TrdDt))\n\nbond_112061 <- bond_HQ[bond_HQ$债券代码_BdCd=='112061',]\nbond_112061 <- xts(bond_112061[,-c(1:3)],order.by = as.Date(bond_112061$交易日期_TrdDt))\n\nView(bond_112087)\n\nchartSeries(to.weekly(bond_112087),theme = 'black',name='债券合约:112087 K线图',up.col = 'red',dn.col = 'green')\nchartSeries(to.weekly(bond_112072),theme = 'black',name='债券合约:112072 K线图',up.col = 'red',dn.col = 'green')\nchartSeries(to.weekly(bond_112061),theme = 'black',name='债券合约:112061 K线图',up.col = 'red',dn.col = 'green')\naddMACD()\naddBBands()\n\n",
+    "created" : 1521355457550.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4208707129",
+    "id" : "1F0FB6F7",
+    "lastKnownWriteTime" : 1521464071,
+    "last_content_update" : 1521464071238,
+    "path" : "~/R Codes/pair_trading/bond.R",
+    "project_path" : "bond.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

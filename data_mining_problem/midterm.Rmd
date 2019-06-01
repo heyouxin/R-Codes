@@ -1,0 +1,43 @@
+---
+title: "midterm"
+output: pdf_document
+---
+
+### 总成绩汇总
+
+```{r}
+library(xlsx)
+library(ggplot2)
+scores <- read.xlsx("成绩汇总最终版.xlsx",1,encoding = "UTF-8",stringsAsFactors=FALSE)
+#View(scores)
+attach(scores)
+scores$成绩 <- as.integer(scores$成绩)
+ggplot(scores,aes(x=成绩))+
+  geom_histogram(binwidth = 10,fill="lightblue",color="black")
+
+boxplot(scores$成绩)
+
+mean(scores$成绩)
+median(scores$成绩)
+max(scores$成绩)
+min(scores$成绩)
+```
+
+
+### 3班成绩汇总
+
+```{R}
+scores_3 <- scores[scores$班级==3,]
+attach(scores_3)
+scores_3$成绩 <- as.integer(scores_3$成绩)
+ggplot(scores_3,aes(x=成绩))+
+  geom_histogram(binwidth = 10,fill="lightblue",color="black")
+
+boxplot(scores_3$成绩)
+
+mean(scores_3$成绩)
+median(scores_3$成绩)
+max(scores_3$成绩)
+min(scores_3$成绩)
+write.csv(scores_3,"class3.csv")
+```

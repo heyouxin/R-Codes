@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1532354085592.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A2B3B28",
+    "lastKnownWriteTime" : 32651513914720368,
+    "last_content_update" : 1532354085592,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "cci59og63o",
+        "caption" : "woe_table_quant",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=woe_table_quant&cache_key=cci59og63o",
+        "displayedObservations" : "7363",
+        "environment" : "",
+        "object" : "woe_table_quant",
+        "totalObservations" : "7363",
+        "variables" : "24"
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

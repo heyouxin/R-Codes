@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(xlsx)\nlibrary(ggplot2)\nscores <- read.xlsx(\"成绩汇总.xlsx\",1,encoding = \"UTF-8\",stringsAsFactors=FALSE)\n#View(scores)\nattach(scores)\nscores$成绩 <- as.integer(scores$成绩)\nggplot(scores,aes(x=成绩))+\n  geom_histogram(binwidth = 10,fill=\"lightblue\",color=\"black\")\n\n\nboxplot(scores$成绩)\n\nmean(scores$成绩)\nmedian(scores$成绩)\nmax(scores$成绩)\nmin(scores$成绩)\n\n\n\n\nscores_3 <- scores[scores$班级==3,]\nView(scores_3)\nwrite.csv(scores_3,\"class3.csv\")\n\nlibrary(xlsx)\nscores_3 <- read.xlsx(\"class3.xlsx\",1,encoding = \"UTF-8\")\nView(scores_3)\nscores_3$学号_2 <- as.character(scores_3$学号) \nscores_3$学号_2 <- substr(scores_3$学号_2,11,14)\n\nwrite.xlsx(scores_3[,7:8],\"class3.xlsx\")\n",
+    "created" : 1525423632594.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1163051796",
+    "id" : "D6353476",
+    "lastKnownWriteTime" : 1525432948,
+    "last_content_update" : 1525432948186,
+    "path" : "~/R Codes/data_mining_problem/scores.R",
+    "project_path" : "scores.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 17,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,63 @@
+---
+title: "quiz3"
+output: html_document
+---
+### 何友鑫 15320161152320
+```{r}
+library(ISLR)
+msePlot <- function(n=10,color="black",type='b',isplot=FALSE)
+{
+  rows <- nrow (Auto)    
+  indexes <- sample (rows, 196, replace =FALSE)   
+  Auto2 <- Auto [indexes, ]    
+  mpg <- Auto2$mpg
+  horsepower <-  Auto2$horsepower
+  data <- data.frame(mpg,horsepower)
+  col_name <- c()
+  for (poly_num in 2:n) 
+  {
+    data <- cbind(data,horsepower^poly_num)
+    col_name <- c(col_name,paste0("horsepower.",poly_num))
+  }
+  colnames(data) <- c("mpg","horsepower",col_name)
+  #View(data)
+  formu <- "mpg~horsepower"
+  MSE <- c()
+  for (i in 1:n) 
+  {
+    if (i==1)
+    {
+      formu <- paste0(formu)
+      
+    }
+    else
+      formu <- paste0(formu,"+","horsepower.",i)
+    fit <- lm(formu,data=data)
+    MSE <- c(MSE,sum(residuals(fit)^2)/fit$df.residual)
+
+    #print(summary(lm(formu,data=data)))
+    
+  }
+  if(isplot==TRUE)
+  { 
+    plot(1:n,MSE,type = type,col=color,xlab = "poly_num")
+  }
+  else
+    lines(MSE,col=color)
+ 
+}
+```
+```{r}
+msePlot(isplot = TRUE)
+```
+```{r}
+colors=c("green","red","blue","yellow")
+for (i in 1:length(colors)) 
+{
+  if(i==1)
+    msePlot(isplot = TRUE,type='l',color = colors[i])
+  else
+    msePlot(isplot = FALSE,type='l',color = colors[i])
+}
+
+```

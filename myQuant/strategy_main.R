@@ -8,9 +8,9 @@ A_stock <- as.character(A_stock)
 
 stockID <- getBasicFinance(A_stock)
 
-date_from <- "2017-11-18"
-date_to <- "2017-12-17"
-w_wset_data<-w.wset('tradesuspend','startdate=2017-11-18;enddate=2017-12-17')
+date_from <- "2017-12-01"
+date_to <- "2018-01-02"
+w_wset_data<-w.wset('tradesuspend','startdate=2017-12-01;enddate=2018-01-02')
 stock_stop <- w_wset_data$Data[,'wind_code']
 ##去除停牌的股票
 stockID <- setdiff(stockID,stock_stop)

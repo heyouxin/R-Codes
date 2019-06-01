@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list=ls())\nlibrary(leaps)\nlibrary(ISLR)\nlibrary(pls)\nlibrary(glmnet)\n#View(Credit)\nMSE_ridge <- c()\nMSE_lasso <- c()\nMSE_pcr <- c()\nattach(Credit)\nCredit <- Credit[,-1]\nrows <- nrow (Credit)  \nfor (n in 1:100) \n{\n  \n  x <- model.matrix(Balance~.,Credit)[,-11]\n  train <- sample (rows, 200, replace =FALSE)\n  ridge_mod <- glmnet(x[train,],Credit[train,11],alpha=0)\n  cv_out <- cv.glmnet(x[train,],Credit[train,11],alpha=0)\n  bestlam <- cv_out$lambda.min\n  ridge_pred <- predict(ridge_mod,s=bestlam,newx=x[-train,])\n  MSE_ridge <- c(MSE_ridge,mean((ridge_pred-Credit[-train,11])^2))\n\n  lasso_mod <- glmnet(x[train,],Credit[train,11],alpha=1)\n  cv_out <- cv.glmnet(x[train,],Credit[train,11],alpha=1)\n  bestlam <- cv_out$lambda.min\n  lasso_pred <- predict(lasso_mod,s=bestlam,newx = x[-train,])\n  MSE_lasso <- c(MSE_lasso,mean((lasso_pred-Credit[-train,11])^2))\n\n  cv_error <- c()\n  for (m in 1:10) {\n    pcr_mod<-pcr(Balance~.,m,data=Credit,scale=T,validation=\"CV\")\n    pcr_pred <- predict(pcr_mod,newx = Credit[-train,-11])\n    cv_error <- c(cv_error,mean((pcr_pred-Credit[-train,11])^2))\n    \n  }\n  MSE_pcr <- c(MSE_pcr,min(cv_error)) \n}\nmean(MSE_ridge)\nmean(MSE_lasso)\nmean(MSE_pcr)",
+    "created" : 1523881693654.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4213433474",
+    "id" : "5F9EEAC4",
+    "lastKnownWriteTime" : 1523886509,
+    "last_content_update" : 1523886509477,
+    "path" : "~/R Codes/data_mining_problem/quiz7.R",
+    "project_path" : "quiz7.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 24,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

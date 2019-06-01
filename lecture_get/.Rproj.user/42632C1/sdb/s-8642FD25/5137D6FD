@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(leaps)\nlibrary(glmnet)\nX <- rnorm(100)\ne <- rnorm(100)\nY <- 1+X+X^2+X^3+e\ngene_data <- data.frame(Y,X)\n\nfit <- regsubsets(Y~1+poly(X,10),data = gene_data,nvmax = 10)\nreg_summ <- summary(fit)\n\nplot(reg_summ$adjr2,xlab = \"number of variables\",ylab=\"Adjusted RSq\",type=\"l\")\npoints(which.max(reg_summ$adjr2),reg_summ$adjr2[which.max(reg_summ$adjr2)],col=\"red\",cex=2,pch=20)\n\nplot(reg_summ$cp,xlab = \"number of variables\",ylab=\"Cp\",type=\"l\")\npoints(which.min(reg_summ$cp),reg_summ$cp[which.min(reg_summ$cp)],col=\"blue\",cex=2,pch=20)\n\nplot(reg_summ$bic,xlab = \"number of variables\",ylab=\"BIC\",type=\"l\")\npoints(which.min(reg_summ$bic),reg_summ$bic[which.min(reg_summ$bic)],col=\"green\",cex=2,pch=20)\n\nreg_fwd <- regsubsets(Y~1+poly(X,10),data=gene_data,nvmax = 10,method = \"forward\")\nfwd_summ <- summary(reg_fwd)\n\nplot(fwd_summ$adjr2,xlab = \"number of variables\",ylab=\"Adjusted RSq\",type=\"l\")\npoints(which.max(fwd_summ$adjr2),fwd_summ$adjr2[which.max(fwd_summ$adjr2)],col=\"red\",cex=2,pch=20)\n\nplot(fwd_summ$cp,xlab = \"number of variables\",ylab=\"Cp\",type=\"l\")\npoints(which.min(fwd_summ$cp),fwd_summ$cp[which.min(fwd_summ$cp)],col=\"blue\",cex=2,pch=20)\n\nplot(fwd_summ$bic,xlab = \"number of variables\",ylab=\"BIC\",type=\"l\")\npoints(which.min(fwd_summ$bic),fwd_summ$bic[which.min(fwd_summ$bic)],col=\"green\",cex=2,pch=20)\n\nreg_bwd <- regsubsets(Y~1+poly(X,10),data=gene_data,nvmax = 10,method = \"backward\")\nbwd_summ <- summary(reg_bwd)\n\nplot(bwd_summ$adjr2,xlab = \"number of variables\",ylab=\"Adjusted RSq\",type=\"l\")\npoints(which.max(bwd_summ$adjr2),bwd_summ$adjr2[which.max(bwd_summ$adjr2)],col=\"red\",cex=2,pch=20)\n\nplot(bwd_summ$cp,xlab = \"number of variables\",ylab=\"Cp\",type=\"l\")\npoints(which.min(bwd_summ$cp),bwd_summ$cp[which.min(bwd_summ$cp)],col=\"blue\",cex=2,pch=20)\n\nplot(bwd_summ$bic,xlab = \"number of variables\",ylab=\"BIC\",type=\"l\")\npoints(which.min(bwd_summ$bic),bwd_summ$bic[which.min(bwd_summ$bic)],col=\"green\",cex=2,pch=20)\n\n# train <- sample(100,50)\n# lasso_mod <- glmnet(as.matrix(1+poly(gene_data$X[train],10)),gene_data$Y[train],alpha=1,lambda = grid)\n# plot(lasso_mod)\n",
+    "created" : 1530360495500.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2116755484",
+    "id" : "5137D6FD",
+    "lastKnownWriteTime" : 1523251623,
+    "last_content_update" : 1523251623,
+    "path" : "~/R Codes/data_mining_problem/hw4.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

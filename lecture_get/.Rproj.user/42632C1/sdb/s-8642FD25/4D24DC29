@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(xlsx)\nlibrary(ggplot2)\nlog_penalty <- read.xlsx(\"新建 Microsoft Excel 工作表 (2).xlsx\",1,encoding=\"UTF-8\")\n\nView(log_penalty)\nlibrary(reshape2)\ndfidfm <- melt(log_penalty, id.vars=\"平衡比例\")\nggplot(dfidfm, aes(x=平衡比例, y=value))+ geom_line(aes(color=variable))\n\n\nauc_total <- read.csv(\"auc_total.csv\")\nView(auc_total)\nattach(auc_total)\nauc_total$x <- as.double(auc_total$x)\nggplot(auc_total,aes(x=x))+\n  geom_histogram(binwidth =.01 ,fill=\"lightblue\",color=\"black\")+\n  labs(x = \"AUC\")\n\nrf <- read.csv(\"file:///C:/Users/heyouxin/Documents/Tencent Files/277583393/FileRecv/res1.csv\")\nView(rf)\nlibrary(reshape2)\ndfidfm <- melt(rf, id.vars=\"X\")\nggplot(dfidfm, aes(x=X, y=value))+ geom_line(aes(color=variable))+labs(x = \"平衡比例\")\n\n\nggplot(dt, aes(x = obj, y = val, fill = obj, group = factor(1))) + \n  geom_bar(stat = \"identity\") +\n  theme_economist()\n\n\nrf_2 <- read.csv(\"file:///C:/Users/heyouxin/Desktop/import.csv\")\n\nbarplot(rev(rf_2$X),horiz=T,xlim=c(-4,1),axes=F,col=rep(brewer.pal(9,'YlOrRd'),each=15))  \ntext(seq(from=0.7,length.out=135,by=1.2),x=-2,label=rev(rf_2$Feature.Importance))  \naxis(3,c(0,0.25,0.5,0.75,1),c('0%','25%','50%','75%','100%'))  \n\n\nggplot(rf_2, aes(x=X) ) + geom_bar() + coord_flip()\n\n\nrf_2$X <- as.integer(rownames(rf_2))\nrf_2$\n  \n  \n  \np1 <- ggplot(data = rf_2, aes(x=X,y=rf_2$Feature.Importance))\n\np1 <- p1 + geom_bar( stat=\"identity\" , width = 0.5, fill = \"cornflowerblue\")\n\np1 + scale_x_continuous(breaks=Feature.Importance, labels=X, labels=df_report_1_toPPT2orderID, labels=df_report_1_toPPT2from_ent_level)\n\ndf_report_1_toPPT2$orderID <- as.integer(rownames(df_report_1_toPPT2))\np1 <- ggplot(data = df_report_1_toPPT2, aes(x=orderID,y=df_report_1_toPPT2$code_count))\np1 <- p1 + geom_bar( stat=\"identity\" , width = 0.5, fill = \"cornflowerblue\")\np1 + scale_x_continuous(breaks=df_report_1_toPPT2orderID, labels=df_report_1_toPPT2orderID, labels=df_report_1_toPPT2orderID, labels=df_report_1_toPPT2from_ent_level)\n\n",
+    "created" : 1530375283184.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1333483155",
+    "id" : "4D24DC29",
+    "lastKnownWriteTime" : 1524766661,
+    "last_content_update" : 1524766661,
+    "path" : "~/R Codes/data_mining_problem/graph.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

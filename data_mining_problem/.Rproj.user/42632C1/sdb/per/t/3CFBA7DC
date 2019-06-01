@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"quiz9\"\noutput: html_document\n---\n### 何友鑫 15320161152320\n```{r}\n\nlibrary(ISLR)\n#View(Hitters)\nlibrary(tree)\nattach(Hitters)\ntree_Hitter <- tree(Salary~Years+Hits+RBI)\nsummary(tree_Hitter)\nplot(tree_Hitter)\ntext(tree_Hitter)\n\n```",
+    "created" : 1525242474867.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "977702250",
+    "id" : "3CFBA7DC",
+    "lastKnownWriteTime" : 1525242547,
+    "last_content_update" : 1525242547401,
+    "path" : "~/R Codes/data_mining_problem/quiz9.Rmd",
+    "project_path" : "quiz9.Rmd",
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 16,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

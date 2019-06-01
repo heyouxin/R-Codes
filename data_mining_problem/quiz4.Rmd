@@ -1,0 +1,34 @@
+---
+title: "quiz4"
+output: html_document
+---
+#### 何友鑫 15320161152320
+```{r}
+library(ISLR)
+library(MASS)
+attach(Portfolio)
+
+mean <- c(0,0)
+sigma <- matrix(c(sd(X),cor(X,Y),cor(X,Y),sd(Y)),nrow=2,ncol=2)
+true_c <- c()
+for (j in 1:1000)
+{
+  data <- mvrnorm(100,mean,sigma)
+  alpha <- (sd(data[,1])^2-cov(data[,1],data[,2]))/(sd(data[,1])^2+sd(data[,2])^2-2*cov(data[,1],data[,2]))
+  true_c <- c(true_c,alpha)
+}
+hist(true_c)
+
+alpha_c <- c()
+for(i in 1:1000)
+{
+  rows <- nrow (Portfolio)    
+  indexes <- sample (rows, 100, replace =T)   
+  simu_data <- Portfolio [indexes, ]  
+
+  alpha <- (sd(simu_data$X)^2-cov(simu_data$X,simu_data$Y))/(sd(simu_data$X)^2+sd(simu_data$Y)^2-2*cov(simu_data$X,simu_data$Y))
+  alpha_c <- c(alpha_c,alpha)
+  
+}
+hist(alpha_c)
+```

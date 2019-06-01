@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1532352632884.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A14BA8D5",
+    "lastKnownWriteTime" : 212438944,
+    "last_content_update" : 1532352632884,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "wu2zf65rmb",
+        "caption" : "result_finance_15$ivtable",
+        "contentUrl" : "grid_resource/gridviewer.html?env=_rs_no_env&obj=&cache_key=wu2zf65rmb",
+        "displayedObservations" : 5,
+        "environment" : "_rs_no_env",
+        "object" : "",
+        "totalObservations" : 5,
+        "variables" : 14
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

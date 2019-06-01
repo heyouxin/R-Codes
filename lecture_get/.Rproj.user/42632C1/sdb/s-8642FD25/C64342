@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#防止加载的内存覆盖当前的全局变量，故用局部内存环境返回参数\ngetValue <- function(filename)\n{\n  load(filename)\n  return (your_variable)\n}\n\ntab <- data.frame()\nfor (j in c()) \n{\n  temp_col <- c()\n  for (seed in c())\n  {\n    for (lam in c())\n    {\n      filename <- paste0(\"j\",j,\"seed\",seed,\"lambda0.\",lam,\".RData\")\n      temp_col <- c(temp_col,getValue(filename))\n    }\n  }\n  tab <- cbind(tab,temp_col)\n  \n}\n\n\n\n\n",
+    "created" : 1530074608548.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "532887494",
+    "id" : "C64342",
+    "lastKnownWriteTime" : 1530075925,
+    "last_content_update" : 1530075925077,
+    "path" : "~/R Codes/lecture_get/222.R",
+    "project_path" : "222.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

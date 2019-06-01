@@ -1,0 +1,60 @@
+---
+title: "hw1"
+output: html_document
+---
+
+### 何友鑫 15320161152320
+
+#### 13.
+```{r}
+#set.seed(123)
+X <- rnorm(100,0,1)
+e <- rnorm(100,0,0.5)
+Y <- -1+0.5*X+e
+length(Y)
+fit <- lm(Y~X)
+summary(fit)
+plot(X,Y)
+predict(fit)
+X_2 <- X*X
+fit2 <- lm(Y~X+X_2)
+summary(fit2)
+abline(fit, lwd=1, col="red")
+abline(fit2,lwd=1,col="blue")
+
+```
+
+#### 15.
+
+```{r}
+library(MASS)
+#par(mfrow=c(2,1))
+cof <- c()
+for (c in 2:ncol(Boston)) {
+  Y <- Boston[,1]
+  X <- Boston[,c]
+  plot(X,Y,xlab=colnames(Boston)[c],ylab=colnames(Boston)[1])
+  abline(lm(Y~X))
+  fit_1 <- lm(Y~X)
+  cof <- c(cof,fit_1$coefficients[2])
+}
+reg <- paste0("crim ~.",sep="")
+fit <- lm(reg,data=Boston)
+summary(fit)
+```
+```{r}
+par(mfrow=c(1,1))
+plot(cof,fit$coefficients[-1])
+```
+
+
+```{r}
+for (c in 2:ncol(Boston)) {
+  Y <- Boston[,1]
+  X <- Boston[,c]
+  X_2 <- X^2
+  X_3 <- X^3
+  fit <- lm(Y~X+X_2+X_3)
+  print(summary(fit))
+}
+```

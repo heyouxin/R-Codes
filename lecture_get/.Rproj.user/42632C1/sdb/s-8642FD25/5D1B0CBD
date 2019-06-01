@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list=ls())\nlibrary(httr)\nlibrary(rvest)\nlibrary(RSelenium)\nremDr <- remoteDriver(remoteServerAddr = \"localhost\" \n                      , port = 4444\n                      , browserName = \"chrome\"\n)\n\n\n\nfor (times in 1:9) \n{\n  remDr$open()\n  remDr$navigate(\"http://event.soe.xmu.edu.cn/LectureOrder.aspx\")\n\n  #login_account <- remDr$findElement(using = \"css\", \"[name = 'UserName']\")\n  #login_account$sendKeysToElement(list(\"15320161152321\"))\n  \n  #login_password <- remDr$findElement(using = \"css\", \"[name = 'Password']\")\n  #login_password$sendKeysToElement(list(\"123456\"))\n  \n  login_account <- remDr$findElement(using = \"css\", \"[name = 'UserName']\")\n  login_account$sendKeysToElement(list(\"15320161152320\"))\n  \n  login_password <- remDr$findElement(using = \"css\", \"[name = 'Password']\")\n  login_password$sendKeysToElement(list(\"wskdcqqq\"))\n  \n  \n  login <- remDr$findElement(using = 'css selector', \"#default-main > div.default-content.logon-content > div > div > div.save-operation > input\")\n  login$clickElement()\n  \n  Sys.sleep(3)\n  webElems <- remDr$findElements(using = 'css selector', \"td:nth-child(14)\")\n  Action <- unlist(lapply(webElems, function(x){x$getElementText()}))\n  while(!any(Action[]==\"Reserve this seminar\"))\n  {\n    #Sys.sleep(1)\n    remDr$refresh() \n    webElems <- remDr$findElements(using = 'css selector', \"td:nth-child(14)\")\n    Action <- unlist(lapply(webElems, function(x){x$getElementText()}))\n    \n  }\n\n  n <- length(Action)\n  for (i in 1:n) \n  {\n    if(Action[i]==\"Reserve this seminar\")\n    {\n      location <- paste0(\"#ctl00_MainContent_GridView1_ctl0\",i+1,\"_btnreceive\")\n      make_reservation <- remDr$findElement(using = 'css selector', location)\n      make_reservation$clickElement()\n      #Sys.sleep(3)\n      Sys.sleep(1)\n    }\n  }\n}\n\n",
+    "created" : 1508229610692.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2367140256",
+    "id" : "5D1B0CBD",
+    "lastKnownWriteTime" : 1521103631,
+    "last_content_update" : 1521103631,
+    "path" : "~/R Codes/lecture_get/main2.R",
+    "project_path" : "main2.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

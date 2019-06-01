@@ -21,10 +21,10 @@ for (times in 1:9)
   #login_password$sendKeysToElement(list("123456"))
   
   login_account <- remDr$findElement(using = "css", "[name = 'UserName']")
-  login_account$sendKeysToElement(list("15320161152349"))
+  login_account$sendKeysToElement(list("15320161152320"))
   
   login_password <- remDr$findElement(using = "css", "[name = 'Password']")
-  login_password$sendKeysToElement(list("123456"))
+  login_password$sendKeysToElement(list("wskdcqqq"))
   
   
   login <- remDr$findElement(using = 'css selector', "#default-main > div.default-content.logon-content > div > div > div.save-operation > input")
@@ -50,7 +50,8 @@ for (times in 1:9)
       location <- paste0("#ctl00_MainContent_GridView1_ctl0",i+1,"_btnreceive")
       make_reservation <- remDr$findElement(using = 'css selector', location)
       make_reservation$clickElement()
-      Sys.sleep(3)
+      #Sys.sleep(3)
+      Sys.sleep(1)
     }
   }
 }

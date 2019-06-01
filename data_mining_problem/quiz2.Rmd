@@ -1,0 +1,50 @@
+---
+title: "quiz2"
+output: html_document
+---
+### 何友鑫 15320161152320
+```{r}
+library(MASS)
+mean <- c(1,1)
+sigma <- matrix(c(2,1,1,2),nrow=2,ncol=2)
+data <- mvrnorm(100,mean,sigma)
+e <- rnorm(100,0,sqrt(2))
+Y <- 2+3*data[,1]+1.5*data[,2]+e
+plot(data[,1],Y)
+plot(data[,2],Y)
+lm_fit <- lm(Y~data[,1]+data[,2])
+summary(lm_fit)
+
+
+cof_1 <- c()
+cof_2 <- c()
+cof_3 <- c()
+fun1 <- function()
+{
+  mean <- c(1,1)
+  sigma <- matrix(c(2,1,1,2),nrow=2,ncol=2)
+  data <- mvrnorm(100,mean,sigma)
+  e <- rnorm(100,0,sqrt(2))
+  Y <- 2+3*data[,1]+1.5*data[,2]+e
+  lm_fit <- lm(Y~data[,1]+data[,2])
+  return(lm_fit$coefficients)
+  
+}
+for (i in 1:1000) {
+  cof <- fun1()
+  cof_1 <- c(cof_1,cof[1])
+  cof_2 <- c(cof_2,cof[2])
+  cof_3 <- c(cof_3,cof[3])
+  
+  
+}
+boxplot(cof_1)
+boxplot(cof_2)
+boxplot(cof_3)
+mean(cof_1)
+mean(cof_2)
+mean(cof_3)
+median(cof_1)
+median(cof_2)
+median(cof_3)
+```

@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524917790786.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "8463E0B0",
+    "lastKnownWriteTime" : 32651513914720368,
+    "last_content_update" : 1524917790786,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "rznjzjxbwy",
+        "caption" : "Hitters",
+        "contentUrl" : "grid_resource/gridviewer.html?env=package%3AISLR&obj=Hitters&cache_key=rznjzjxbwy",
+        "displayedObservations" : "322",
+        "environment" : "package:ISLR",
+        "object" : "Hitters",
+        "totalObservations" : "322",
+        "variables" : "20"
+    },
+    "relative_order" : 15,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

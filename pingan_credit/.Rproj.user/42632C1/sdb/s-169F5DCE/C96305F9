@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1532484150791.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "C96305F9",
+    "lastKnownWriteTime" : 28429440806879331,
+    "last_content_update" : 1532484150791,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "8mq928z7jo",
+        "caption" : "woe_table_factor",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=woe_table_factor&cache_key=8mq928z7jo",
+        "displayedObservations" : 7363,
+        "environment" : "",
+        "object" : "woe_table_factor",
+        "totalObservations" : 7363,
+        "variables" : 7
+    },
+    "relative_order" : 16,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

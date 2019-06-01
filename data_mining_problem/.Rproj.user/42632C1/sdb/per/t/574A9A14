@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"quiz8\"\noutput: html_document\n---\n### 何友鑫 15320161152320\n```{r}\nlibrary(ISLR)\nlibrary(splines)\nattach(Wage)\nagelims <- range(age)\nage.grid <- seq(from=agelims[1],to=agelims[2])\n\nfit <- lm(wage~bs(age,knots = c(25,40,60)),data=Wage)\n\npred <- predict(fit,newdata = list(age=age.grid),se=T)\nplot(age,wage,col=\"gray\")\nlines(age.grid,pred$fit,lwd=2)\nlines(age.grid,pred$fit+2*pred$se,lty=\"dashed\")\nlines(age.grid,pred$fit-2*pred$se,lty=\"dashed\")\n\nfit2 <- lm(wage~ns(age,knots = c(25,40,60)),data=Wage)\npred2 <- predict(fit2,newdata = list(age=age.grid),se=T)\nlines(age.grid,pred2$fit,col=\"red\",lwd=2)\n\n\n\nplot(age,wage,xlim=agelims,cex=.5,col=\"darkgrey\")\ntitle(\"Smoothing Spline\")\nfit <- smooth.spline(age,wage,df=16)\nfit2 <- smooth.spline(age,wage,cv=TRUE)\nlines(fit,col=\"red\",lwd=2)\nlines(fit2,col=\"blue\",lwd=2)\nlegend(\"topright\",legend = c(\"16 DF\",\"6,8 DF\"),col=c(\"red\",\"blue\"),lty=1,lwd=2,cex=.8)\n\n\n```\n\n",
+    "created" : 1524490396572.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3399990892",
+    "id" : "574A9A14",
+    "lastKnownWriteTime" : 1524490463,
+    "last_content_update" : 1524490463393,
+    "path" : "~/R Codes/data_mining_problem/quiz8.Rmd",
+    "project_path" : "quiz8.Rmd",
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 28,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

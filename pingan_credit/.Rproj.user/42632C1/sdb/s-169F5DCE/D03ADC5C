@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1531449080767.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D03ADC5C",
+    "lastKnownWriteTime" : 277995232,
+    "last_content_update" : 1531449080767,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "00cohcywmz",
+        "caption" : "iv_table_industry_name",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=iv_table_industry_name&cache_key=00cohcywmz",
+        "displayedObservations" : "14",
+        "environment" : "",
+        "object" : "iv_table_industry_name",
+        "totalObservations" : "14",
+        "variables" : "6"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

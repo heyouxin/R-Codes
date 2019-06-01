@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"quiz6\"\noutput: html_document\n---\n### 何友鑫 15320161152320\n```{r }\nlibrary(MASS)\nlibrary(glmnet)\nmean <- rep(0,100)\nsigma <- matrix(nrow=100,ncol=100)\nfor (i in 1:100) \n{\n  for (j in 1:100) \n  {\n    sigma[i,j] <- 0.5^abs(i-j)\n    \n    \n  }\n  \n}\n#View(sigma)\nX <- mvrnorm(100,mean,sigma)\ne <- rnorm(100)\ny1 <- rep(1,5)\ny2 <- rep(0.5,5)\ny3 <- rep(0,89)\nY <- c(y1,0,y2,y3)\nMSE_ridge <- c()\nMSE_lasso <- c()\n#grid=10^seq(10,-2,length=100)\nfor (n in 1:100) {\n  train <- sample(100,50,replace = F)\n  ridge_mod <- glmnet(X[train,],Y[train],alpha=0)\n  cv_out <- cv.glmnet(X[train,],Y[train],alpha=0)\n  bestlam <- cv_out$lambda.min\n  ridge_pred <- predict(ridge_mod,s=bestlam,newx=X[-train,])\n  MSE_ridge <- c(MSE_ridge,mean((ridge_pred-Y[-train])^2))\n  \n  lasso_mod <- glmnet(X[train,],Y[train],alpha=1) \n  cv_out <- cv.glmnet(X[train,],Y[train],alpha=1)\n  bestlam <- cv_out$lambda.min\n  lasso_pred <- predict(lasso_mod,s=bestlam,newx = X[-train,])\n  MSE_lasso <- c(MSE_lasso,mean((lasso_pred-Y[-train])^2))\n  \n}\nmean(MSE_ridge)\nmean(MSE_lasso)\n\n\n\n\n\n\n```",
+    "created" : 1523279357627.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1264509035",
+    "id" : "ECCC8315",
+    "lastKnownWriteTime" : 1523280776,
+    "last_content_update" : 1523280776458,
+    "path" : "~/R Codes/data_mining_problem/quiz6.Rmd",
+    "project_path" : "quiz6.Rmd",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 22,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list=ls())\nlibrary(httr)\nlibrary(rvest)\nlibrary(RSelenium)\nremDr <- remoteDriver(remoteServerAddr = \"localhost\" \n                      , port = 4444\n                      , browserName = \"chrome\"\n)\n\nremDr$open()\nremDr$navigate(\"http://event.soe.xmu.edu.cn/LectureOrder.aspx\")\n\n\nSys.sleep(15)\n#for (times in 1:9) \n#{\n  \n  webElems <- remDr$findElements(using = 'css selector', \"td:nth-child(14)\")\n  Action <- unlist(lapply(webElems, function(x){x$getElementText()}))\n  while(!any(Action[]==\"Reserve this seminar\"))\n  #while(!any(Action[]==\"Cancel my reservation\"))\n  {\n    #Sys.sleep(60)\n    remDr$refresh() \n    webElems <- remDr$findElements(using = 'css selector', \"td:nth-child(14)\")\n    Action <- unlist(lapply(webElems, function(x){x$getElementText()}))\n    \n  }\n\n  \n  #remDr$navigate(\"http://event.soe.xmu.edu.cn/LectureOrder.aspx\")\n  n <- length(Action)\n  for (i in 1:n) \n  {\n     if(Action[i]==\"Reserve this seminar\")\n     {\n       ### CSS//*[@id=\"ctl00_MainContent_GridView1_ctl04_btnrefuse\"]\n        #location <- paste0(\"#ctl00_MainContent_GridView1_ctl0\",i+1,\"_btnrefuse\")\n        location <- paste0(\"#ctl00_MainContent_GridView1_ctl0\",i+1,\"_btnreceive\")\n        make_reservation <- remDr$findElement(using = 'css selector', location)\n        make_reservation$clickElement()\n        Sys.sleep(30)\n        remDr$navigate(\"http://event.soe.xmu.edu.cn/LectureOrder.aspx\")\n     }\n   }\n  remDr$navigate(\"http://event.soe.xmu.edu.cn/LectureOrder.aspx\")\n   \n#}\n\n",
+    "created" : 1508161591119.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "257612713",
+    "id" : "41FC59C4",
+    "lastKnownWriteTime" : 1514876526,
+    "last_content_update" : 1514876526,
+    "path" : "~/R Codes/lecture_get/main.R",
+    "project_path" : "main.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list = ls())\nlibrary(\"quantmod\")\nlibrary(\"zoo\")\n#hs <- read.zoo(\"./data/hs300_dir.csv\",sep=\",\",header=T,format = \"%Y-%m-%d\")\nhs <- read.zoo(\"./data/HS300.csv\",sep=\",\",header=T,format = \"%Y-%m-%d\")\nhsp <- hs$cp\n\n#对zoo数据的滚动处理rollapply\nmv10<- rollapply(hsp,10,mean,align = c(\"right\"))\nmv20<- rollapply(hsp,20,mean,align = c(\"right\"))\nvol10<- rollapply(hsp,10,sd,align = c(\"right\"))\nvol20<- rollapply(hsp,20,sd,align = c(\"right\"))\n#相对强弱指数\tRSI\nrsi5<- RSI(hsp,5,\"SMA\")\nrsi14<- RSI(hsp,14,\"SMA\")\n\nmacd1<- MACD(hsp,12,26,9,\"SMA\")\nmacd2<- MACD(hsp,7,20,5,\"SMA\")\nbbands<- BBands(as.matrix(hsp),20,\"SMA\",2)\n\n\n# create variable direction with either Up direction or Down direction\ndirection<- NULL\ndirection[hsp> Lag(hsp,1)] <- 1\ndirection[hsp< Lag(hsp,1)] <- 0\n#head(Lag(hsp,1))\n# direction[((hsp-Lag(hsp,1))/Lag(hsp,1))>=0.01] <- 2\n# direction[((hsp-Lag(hsp,1))/Lag(hsp,1))<=-0.01] <- -2\n# direction[((hsp- Lag(hsp,1))/Lag(hsp,1))> -0.01 & ((hsp- Lag(hsp,1))/Lag(hsp,1))<0] <- -1\n# direction[((hsp- Lag(hsp,1))/Lag(hsp,1))< 0.01 & ((hsp- Lag(hsp,1))/Lag(hsp,1))>=0] <- 1\n\n\n# bind all columns consisting of price and indicator\nhsp <- \n  cbind(hsp,mv10,mv20,vol10,vol20,rsi5,rsi14,macd1,macd2,bbands,direction)\n\n#View(hsp)\ndm <- dim(hsp)\n\ncolnames(hsp)[dm[2]] <- \"Direction\"\ncolnames(hsp)[dm[2]]\n\n\nhsp <- read.zoo(\"./data/hsp_lag.csv\",sep=\",\",header=T,format = \"%Y-%m-%d\")\n\nView(hsp)\n# in sample data and the second part is out of sample data\n\ninsams<- \"2007-01-01\"\ninsame<- \"2016-12-31\"\nosams<- \"2017-01-01\"\nosame<- \"2017-12-31\"\ninrow <- which(index(hsp) >= insams & index(hsp) <= insame)\noutrow <- which(index(hsp) >= osams & index(hsp) <= osame)\n\ninhsp <- hsp[inrow,]\nouthsp <- hsp[outrow,]\n\n# standardizing the dataset\ninme <- apply(inhsp,2,mean)\ninstd <- apply(inhsp,2,sd)\n\ninidn <- matrix(1,dim(inhsp)[1],dim(inhsp)[2])\nnorm_inhsp <- (inhsp-t(inme*t(inidn))) / t(instd*t(inidn))\n\ndm <- dim(inhsp)\nnorm_inhsp[,dm[2]] <- direction[inrow]\n\n# build a logistic regression model to predict market direction\n\nlogistreg <- paste(\"Direction ~ .\",sep=\"\")\nmodel <- glm(logistreg,family=\"binomial\",norm_inhsp)\n\nsummary(model)\npred <- predict(model,norm_inhsp)\nprob <- 1 / (1+exp(-(pred)))\npar(mfrow=c(2,1))\nplot(pred,type=\"l\")\nplot(prob,type=\"l\")\n\npred_direction<- NULL\npred_direction[prob> 0.5] <- 1\npred_direction[prob<= 0.5] <- 0\n\n# # confusionMatrix gives a matrix as an output.\n# \nlibrary(caret)\nresult_com<- confusionMatrix(pred_direction,norm_inhsp$Direction)\nresult_com\n\noutidn<- matrix(1,dim(outhsp)[1],dim(outhsp)[2])\nnorm_outhsp<- (outhsp - t(inme*t(outidn))) / t(instd*t(outidn))\nnorm_outhsp[,dm[2]] <- direction[outrow]\n\noutpred<- predict(model,norm_outhsp)\noutprob<- 1 / (1+exp(-(outpred)))\n\noutpred_direction<- NULL\noutpred_direction[outprob> 0.5] <- 1\noutpred_direction[outprob<= 0.5] <- 0\noutresult_com<- confusionMatrix(outpred_direction,norm_outhsp$Direction)\noutresult_com\n\n#View(hsp)\n#library(xlsx)\n#write.csv(hsp,\"./data/hsp.csv\",row.names = F)\n\n# Performance\nsimreturn <- Delt(hs$cp)\nsignal <- ifelse(outpred_direction ==1,1,ifelse(outpred_direction==-1,-1,0))\n\n\nsimreturn <- simreturn[outrow]\ncost <- 0\nstrategy_return <- simreturn*Lag(signal)-cost\nlibrary(PerformanceAnalytics)\ncumm_return<- Return.cumulative(strategy_return)\nannual_return <- Return.annualized(strategy_return)\ncharts.PerformanceSummary(strategy_return)\n",
+    "created" : 1521358259408.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2948931513",
+    "id" : "9CC64305",
+    "lastKnownWriteTime" : 1514876526,
+    "last_content_update" : 1514876526,
+    "path" : "~/R Codes/myQuant/ML_function.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

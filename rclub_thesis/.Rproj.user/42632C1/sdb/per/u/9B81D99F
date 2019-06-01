@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "getwd()\\\n\n\nread.c\ndata_csv = read.csv2('062.csv')\n",
+    "created" : 1540040860384.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "4087779709",
+    "id" : "9B81D99F",
+    "lastKnownWriteTime" : 4914875457544201587,
+    "last_content_update" : 1540041511391,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

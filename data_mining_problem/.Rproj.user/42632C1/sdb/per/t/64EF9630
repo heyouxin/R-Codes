@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(ISLR)\nlibrary(glmnet)\nAuto2 <- Auto[,1:6]\n#View(Auto2)\nattach(Auto2)\nmpg01 <- c()\nfor (i in 1:length(Auto2$mpg)) \n{\n  if(Auto2$mpg[i]>=median(Auto2$mpg))\n    Auto2$mpg01[i] <- 1\n  else\n    Auto2$mpg01[i] <- 0\n  \n}\n\ntrain_set <- Auto2[1:196,]\ntest_set <- Auto2[197:392,]\nglm_fit <-  glm(mpg01~displacement+horsepower+weight+acceleration,data=train_set,family = binomial)\nsummary(glm_fit)\nglm_probs <- predict(glm_fit,test_set,type = \"response\")\nglm_pred <- rep(0,196)\nglm_pred[glm_probs>=.5] <- 1\nprint(paste0(\"logistic test error:\",mean(glm_pred!=test_set$mpg01)))\n",
+    "created" : 1524659950503.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2999073026",
+    "id" : "64EF9630",
+    "lastKnownWriteTime" : 1524660282,
+    "last_content_update" : 1524660282782,
+    "path" : "~/R Codes/data_mining_problem/logistic_mod.R",
+    "project_path" : "logistic_mod.R",
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 27,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

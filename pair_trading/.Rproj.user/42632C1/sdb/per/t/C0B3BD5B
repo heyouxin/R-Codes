@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521425534822.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "C0B3BD5B",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1521425534822,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "q5ni8l1cbt",
+        "caption" : "stock_price_HX_ZX",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=stock_price_HX_ZX&cache_key=q5ni8l1cbt",
+        "displayedObservations" : 488,
+        "environment" : "",
+        "object" : "stock_price_HX_ZX",
+        "totalObservations" : 488,
+        "variables" : 2
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

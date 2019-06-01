@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "t <- sample(1:100,1)\nn <- sample(1:100,1)\nk <- sample(1:10000,1)\nvi <- sample(1:200,n)\n\nas.integer(k/vi)\n\n\n\nx <- matrix(c(1,2),2,1)\ny <- matrix(c(2,1),1,2)\nx%*%y\n\nk <- x%%vi\n\n\n",
+    "created" : 1524397493783.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "60782441",
+    "id" : "89388ECD",
+    "lastKnownWriteTime" : 7596484193276666483,
+    "last_content_update" : 1524399159471,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 26,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

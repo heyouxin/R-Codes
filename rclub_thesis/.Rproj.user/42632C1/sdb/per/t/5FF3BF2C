@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(arules)  #加载 arules 包\nlibrary(arulesViz)\ndata = read.transactions('datafor4.txt',format=\"single\",sep='\\t',cols=c(1,2),rm.duplicates=TRUE)\ninspect(data[1:5])\n\nset.seed(12)\nn= dim(data)[1]\nindex = sample(n*0.7,replace=FALSE)\ntrain = data[index]\ntest = data[-index]\n\nsummary(train)\n\n# way1 整体关联\nrules <- apriori(data = train,parameter = list(support = 0.008,confidence = 0.15,minlen = 2))\n\nsummary(rules)\n\n## lift排序之后的规则\ninspect(sort(rules,by=\"lift\")[1:10])\n\n\nsubrules <- subset(rules,items %in% \"妇女权益\")  # items 表明与出现在规则的任何位置的项进行匹配，为了将子集限制到匹配只发生在左侧或者右侧位置上，可以使用lhs或者rhs代替\nsubrules\ninspect(subrules[1:2])\n\n\nplot(rules, measure = c(\"support\", \"lift\"), shading = \"confidence\")\nplot(x=subrules,method=\"graph\")\n\n#  检验参考 https://blog.csdn.net/yepeng2007fei/article/details/78910105\n##此行报错，先检验train\nqualityMeasures <- interestMeasure(rules, method=c(\"coverage\",\"fishersExactTest\",\"conviction\"), transactions=train) \nsummary(qualityMeasures) \nquality(groceryrules) <- cbind(quality(rules), qualityMeasures)  \ninspect(head(sort(rules, by = \"conviction\", decreasing = F)))  \n\n\n\n",
+    "created" : 1535444541681.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4003963003",
+    "id" : "5FF3BF2C",
+    "lastKnownWriteTime" : 1535442214,
+    "last_content_update" : 1535442214,
+    "path" : "~/R Codes/rclub_thesis/testfor4.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

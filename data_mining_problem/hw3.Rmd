@@ -1,0 +1,55 @@
+---
+title: "hw3"
+output: html_document
+---
+### 何友鑫 15320161152320
+
+#### 5.4 excises   9.
+
+```{r}
+
+library(MASS)
+mu_hat <- mean(Boston$medv)
+sd_mu_hat <- sd(Boston$medv)/sqrt(nrow(Boston))
+sd_mu_hat
+
+mu_c <- c()
+for(i in 1:1000)
+{
+  rows <- nrow (Boston)    
+  indexes <- sample (rows, 100, replace =T)   
+  mu <- mean(Boston [indexes, ]$medv)  
+  mu_c <- c(mu_c,mu)
+  
+}
+sd(mu_c)
+
+c(mu_hat-2*sd(mu_c),mu_hat+2*sd(mu_c))
+t.test(Boston$medv)
+
+u_hat_med <- median(Boston$medv)
+u_hat_med
+med_c <- c()
+for(i in 1:1000)
+{
+  rows <- nrow (Boston)    
+  indexes <- sample (rows, 100, replace =T)   
+  med <- median(Boston [indexes, ]$medv)  
+  med_c <- c(med_c,med)
+  
+}
+sd(med_c)
+
+mu_hat_1 <- quantile(Boston$medv,0.1) 
+mu_hat_1
+mu_hat_1_c <- c()
+for(i in 1:1000)
+{
+  rows <- nrow (Boston)    
+  indexes <- sample (rows, 100, replace =T)   
+  mu_hat_1 <- quantile(Boston [indexes, ]$medv,0.1)  
+  mu_hat_1_c <- c(mu_hat_1_c,mu_hat_1)
+  
+}
+sd(mu_hat_1_c)
+```
